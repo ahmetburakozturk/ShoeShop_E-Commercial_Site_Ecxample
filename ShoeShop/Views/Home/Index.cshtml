@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProductListResponse>
+
+@if (ViewBag.CurrentCategory == null)
+{
+    <div class="container-lg my-3">
+        <img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/15/kargo_bedava.gif" class="img-fluid"/>
+    </div>
+}
+
+<div class="container-sm">
+    @await Component.InvokeAsync("Menu")
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <partial name="_ProductCard" model="item"/>
+        }
+    </div>
+    
+</div>
+
+<ul class="pagination justify-content-center mt-3">
+    @for (var i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
+            <a class="page-link " asp-action="Index" asp-route-page="@i" asp-route-catName="@ViewBag.CurrentCategory">@i</a>
+        </li>
+    }
+</ul>

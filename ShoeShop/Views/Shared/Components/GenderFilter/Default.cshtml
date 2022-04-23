@@ -1,0 +1,22 @@
+﻿@using System.Linq
+@model IEnumerable<Gender>
+
+@*<div class="list-group list-group-flush">*@
+@*@foreach (var category in Model)
+    {
+        <a asp-action="Index" asp-controller="Home" class="list-group-item list-group-item-action @(category.Name==ViewBag.CurrentCategory ? "active list-group-item-info":"")" asp-route-catName="@category.Name" style="font-weight: bold;">@category.Name</a>
+    }*@
+
+
+<div class="dropdown">
+    <a class="btn btn-dark dropdown-toggle pr-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="False">
+        Cinsiyet
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @foreach (var cat in Model)
+        {
+            <li><a class="dropdown-item btn btn-dark @(cat.Name==ViewBag.CurrentCategory ? "active":"")" asp-action="Index" asp-controller="Home" asp-route-catName="@cat.Name">@cat.Name</a></li>
+        }   
+    </ul>
+</div>
+@*</div>*@
