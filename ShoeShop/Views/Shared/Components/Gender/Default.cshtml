@@ -1,0 +1,15 @@
+﻿@using System.Linq
+@model IEnumerable<Gender>
+
+
+<div class="dropdown">
+    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="False">
+        Cinsiyet
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @foreach (var gen in Model)
+        {
+            <li><a class="dropdown-item btn btn-dark @(gen.ID==ViewBag.CurrentGender ? "active":"")" asp-action="Index" asp-controller="Home" asp-route-genderID="@gen.ID"asp-route-genderName="@gen.Name" >@gen.Name</a></li>
+        }   
+    </ul>
+</div>

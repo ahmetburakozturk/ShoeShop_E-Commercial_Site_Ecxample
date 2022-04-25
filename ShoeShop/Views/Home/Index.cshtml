@@ -8,14 +8,26 @@
 }
 
 <div class="container-sm">
-    @await Component.InvokeAsync("Menu")
+    <div class="row">
+        <div class="col-1">
+            @await Component.InvokeAsync("Menu")
+        </div>
+        <div class="col-1">
+            @await Component.InvokeAsync("Gender")
+        </div>
+        <div class="col-1">
+            @await Component.InvokeAsync("BrandFilter")
+        </div>
+        <div class="col-1">
+            @await Component.InvokeAsync("ColorFilter")
+        </div>
+    </div>
     <div class="row">
         @foreach (var item in Model)
         {
             <partial name="_ProductCard" model="item"/>
         }
     </div>
-    
 </div>
 
 <ul class="pagination justify-content-center mt-3">

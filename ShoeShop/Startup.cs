@@ -67,10 +67,20 @@ namespace ShoeShop
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Urunler/Sayfa{page}",
+                    defaults: new { controller = "Products", action = "Show", page = 1 });
+
                 endpoints.MapControllerRoute(
                     name: "",
                     pattern: "{catName}/Sayfa{page}",
                     defaults: new { controller = "Home", action = "Index", page = 1 });
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Detaylar/{productID}",
+                    defaults: new { controller = "Products", action = "Details" });
 
                 endpoints.MapControllerRoute(
                     name: "",
@@ -86,6 +96,7 @@ namespace ShoeShop
                     name: "",
                     pattern: "Sayfa{page}",
                     defaults: new { controller = "Home", action = "Index", page = 1 });
+
             });
         }
     }

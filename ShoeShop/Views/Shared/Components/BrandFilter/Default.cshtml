@@ -1,0 +1,15 @@
+﻿@using System.Linq
+@model IEnumerable<Brand>
+
+
+<div class="dropdown">
+    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="False">
+        Marka
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @foreach (var bnd in Model)
+        {
+            <li><a class="dropdown-item btn btn-dark @(bnd.ID==ViewBag.CurrentBrandID ? "active":"")" asp-action="Index" asp-controller="Home" asp-route-brandID="@bnd.ID">@bnd.Name</a></li>
+        }   
+    </ul>
+</div>

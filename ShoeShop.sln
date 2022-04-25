@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeShop.DataAccess", "Shoe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeShop.Businness", "ShoeShop.Businness\ShoeShop.Businness.csproj", "{FF0D7CE5-23D4-4148-9705-BBBE9C31E25B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoeShop.Dtos", "ShoeShop.Dtos\ShoeShop.Dtos.csproj", "{19D02A0C-0A7C-49DC-AAD6-C4B16810DCC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoeShop.Dtos", "ShoeShop.Dtos\ShoeShop.Dtos.csproj", "{19D02A0C-0A7C-49DC-AAD6-C4B16810DCC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

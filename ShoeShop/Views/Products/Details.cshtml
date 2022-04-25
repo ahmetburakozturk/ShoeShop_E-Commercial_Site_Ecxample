@@ -1,0 +1,60 @@
+﻿@model ProductDetailsResponse
+
+<div class="container-lg mt-5">
+    <div class="row">
+        <div class="col-4">
+            <img src="@Model.ImageUrl" alt="@Model.Name" style="width: 80%"/>
+        </div>
+        <div class="col-4">
+            <img src="@Model.ImageUrl2" alt="@Model.Name" style="width: 80%"/>
+        </div>
+        <div class="col-4">
+            <h3>@Model.BrandName</h3>
+            <p>Kargo Bedava</p>
+            <h2>@Model.Price TL</h2>
+            <br/>
+            <p>Renk :<span>@Model.ColorName</span></p>
+            <br/>
+            <p>Beden Tablosu</p>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Numara Seciniz
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">36</a></li>
+                    <li><a class="dropdown-item" href="#">37</a></li>
+                    <li><a class="dropdown-item" href="#">38</a></li>
+                    <li><a class="dropdown-item" href="#">39</a></li>
+                    <li><a class="dropdown-item" href="#">40</a></li>
+                    <li><a class="dropdown-item" href="#">41</a></li>
+                    <li><a class="dropdown-item" href="#">42</a></li>
+                    <li><a class="dropdown-item" href="#">43</a></li>
+                    <li><a class="dropdown-item" href="#">44</a></li>
+                    <li><a class="dropdown-item" href="#">45</a></li>
+                </ul>
+            </div>
+            <p>Tahmini Teslim Tarihi @(DateTime.Today.AddDays(3).Day) @ViewBag.Month1 - @(DateTime.Today.AddDays(7).Day) @ViewBag.Month2</p>
+            <button class="btn btn-success px-5 py-2">Sepete Ekle</button>
+        </div>
+    </div>
+</div>
+<div class="container-lg mt-5">
+    <div class="row">
+        <div class="col-4">
+            <img src="@Model.ImageUrl3" alt="@Model.Name" style="width: 80%"/>
+        </div>
+        <div class="col-4">
+            <img src="@Model.ImageUrl4" alt="@Model.Name" style="width: 80%"/>
+        </div>
+        <div class="col-4">
+            <h5>Ürün Özellikleri</h5>
+            <hr/>
+            <p>Ürün Kodu :<span>@Model.ID</span></p>
+            <p>Marka :<span>@Model.BrandName</span></p>
+            <p>Kategori :<span>@Model.CategoryName</span></p>
+            <p>Renk :<span>@Model.ColorName</span></p>
+            <p>Cinsiyet :<span>@Model.GenderName</span></p>
+            <p>Dış Materyal :<span>@Model.Material</span></p>
+        </div>
+    </div>
+</div>

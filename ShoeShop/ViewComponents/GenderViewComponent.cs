@@ -4,11 +4,11 @@ using ShoeShop.Businness.Abstract;
 
 namespace ShoeShopWeb.ViewComponents
 {
-    public class GenderFilterViewComponent
+    public class GenderViewComponent : ViewComponent
     {
         private readonly IGenderService _genderService;
 
-        public GenderFilterViewComponent(IGenderService genderService)
+        public GenderViewComponent(IGenderService genderService)
         {
             _genderService = genderService;
         }

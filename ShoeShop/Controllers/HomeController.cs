@@ -23,7 +23,7 @@ namespace ShoeShop.Controllers
             _categoryService = categoryService;
         }
 
-        public IActionResult Index(int page,string catName)
+        public IActionResult Index(int page,string? catName,int? genderID, int? brandID, int? colorID)
         {
             var categories = _categoryService.GetAllCategories().ToList().Where(c => c.Name == catName);
             var category = categories.LastOrDefault();
@@ -31,12 +31,18 @@ namespace ShoeShop.Controllers
                 ? _productService.GetAllProductsWithInfo().Where(p => p.CategoryName == catName).ToList()
                 : _productService.GetAllProductsWithInfo();
             //var products = _productService.GetAllProducts();
+            products = genderID != null ? products.Where(p => p.GenderID == genderID).ToList() : products;
+            products = brandID != null ? products.Where(p => p.BrandID == brandID).ToList() : products;
+            products = colorID != null ? products.Where(p => p.ColorID == colorID).ToList() : products;
             var productsPerPage = 8;
             var paginatedProducts = products.OrderBy(x => x.Name)
                 .Skip((page - 1) * productsPerPage)
                .Take(productsPerPage);
             ViewBag.CurrentPage = page;
             ViewBag.CurrentCategory = catName;
+            ViewBag.CurrentGender = genderID;
+            ViewBag.CurrentBrandID = brandID;
+            ViewBag.CurrentColorID = colorID;
             ViewBag.TotalPages = Math.Ceiling((decimal)products.Count / productsPerPage);
             return View(paginatedProducts);
         }
@@ -45,6 +51,8 @@ namespace ShoeShop.Controllers
         {
             return View();
         }
+
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

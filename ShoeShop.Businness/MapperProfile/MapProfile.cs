@@ -17,6 +17,11 @@ namespace ShoeShop.Businness.MapperProfile
             CreateMap<Product,AddProductRequest>();
             CreateMap<AddProductRequest,Product>();
             CreateMap<Product,ProductListResponse>();
+            CreateMap<Product,ProductDetailsResponse>();
+            CreateMap<UpdateProductRequest,Product>();
+            CreateMap<Product,UpdateProductRequest>();
+            CreateMap<Product,DeleteProductRequest>();
+            CreateMap<DeleteProductRequest,Product>();
         }
     }
 }

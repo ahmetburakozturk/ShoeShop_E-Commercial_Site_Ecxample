@@ -1,0 +1,15 @@
+﻿@using System.Linq
+@model IEnumerable<Color>
+
+
+<div class="dropdown">
+    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="False">
+        Renk
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @foreach (var clr in Model)
+        {
+            <li><a class="dropdown-item btn btn-dark @(clr.ID==ViewBag.CurrentColorID ? "active":"")" asp-action="Index" asp-controller="Home" asp-route-colorID="@clr.ID">@clr.Name</a></li>
+        }   
+    </ul>
+</div>

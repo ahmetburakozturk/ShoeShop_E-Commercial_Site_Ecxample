@@ -36,7 +36,10 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public int Update(Product entity)
         {
-            throw new NotImplementedException();
+            entity.ModifiedDate = DateTime.Now;
+            _dbContext.Update(entity);
+            _dbContext.SaveChanges();
+            return entity.ID;
         }
 
         public void DeleteById(int id)
@@ -46,7 +49,7 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public bool IsExists(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Products.Any(p => p.ID == id);
         }
 
         public IList<Product> GetByCategory(int categoryId)
@@ -64,5 +67,6 @@ namespace ShoeShop.DataAccess.Concrete.Repository
         {
             throw new NotImplementedException();
         }
+
     }
 }

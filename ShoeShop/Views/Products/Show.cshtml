@@ -38,8 +38,8 @@
                 <img src="@item.ImageUrl" class="img-thumbnail" alt="product image" style="width: 30%;height: 30%"/>
             </td>
             <td class="text-center">
-                @Html.ActionLink("Düzenle", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detaylar", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Düzenle", "Edit", new {  id=item.ID }) |
+                @Html.ActionLink("Detaylar", "Details", new {  id=item.ID }) |
                 @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>

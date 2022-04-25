@@ -15,5 +15,9 @@ namespace ShoeShop.Businness.Abstract
         Product GetProductById(int id);
         int CreateProduct(AddProductRequest productRequest);
         ICollection<ProductListResponse> GetAllProductsWithInfo();
+        ProductDetailsResponse GetProductWithDetails(int id);
+        UpdateProductRequest GetProductForUpdate(int id);
+        int UpdateProduct(UpdateProductRequest productRequest);
+        bool isExist(int id);
     }
 }
