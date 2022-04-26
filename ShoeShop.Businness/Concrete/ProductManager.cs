@@ -34,7 +34,7 @@ namespace ShoeShop.Businness.Concrete
         }
         public ICollection<Product> GetAllProducts()
         {
-            return _productRepository.GetAll().Where(p=>p.IsActive==true).ToList();
+            return _productRepository.GetAll().ToList();
         }
 
         public Product GetProductById(int id)
@@ -90,11 +90,10 @@ namespace ShoeShop.Businness.Concrete
             return _productRepository.Update(product);
         }
 
-        
-
         public bool isExist(int id)
         {
             return _productRepository.IsExists(id);
         }
+
     }
 }

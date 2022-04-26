@@ -9,7 +9,7 @@ namespace ShoeShop.Dtos.Requests
 {
     public class UpdateProductRequest
     {
-        public int ID { get; set; } 
+        public int ID { get; set; }
         [Display(Name = "Marka")]
         public int BrandID { get; set; }
         [Display(Name = "Kategori")]
@@ -36,7 +36,6 @@ namespace ShoeShop.Dtos.Requests
         public double? Discount { get; set; }
         public bool IsActive { get; set; } = true;
         public string Material { get; set; }
-        public DateTime? ModifiedDate { get; set; }
 
     }
 }

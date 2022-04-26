@@ -3,19 +3,20 @@
 <div class="container-lg mt-5">
     <div class="row">
         <div class="col-4">
-            <img src="@Model.ImageUrl" alt="@Model.Name" style="width: 80%"/>
+            <img src="@Model.ImageUrl" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
         </div>
         <div class="col-4">
-            <img src="@Model.ImageUrl2" alt="@Model.Name" style="width: 80%"/>
+            <img src="@Model.ImageUrl2" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
         </div>
         <div class="col-4">
-            <h3>@Model.BrandName</h3>
-            <p>Kargo Bedava</p>
-            <h2>@Model.Price TL</h2>
+            <h3 class="font-weight-bold">@Model.BrandName</h3>
+            <h3 style="color: gray ">@Model.Name</h3>
+            <p class="py-1 px-2" style="background-color: rgb(235,235,235); display: inline-block; border-radius: 10px; font-weight: bold">Kargo Bedava</p>
+            <h2 style="font-weight: 700; color: orangered">@(Convert.ToInt32(Model.Price * (1 - Model.Discount))-0.01) TL</h2>
             <br/>
-            <p>Renk :<span>@Model.ColorName</span></p>
+            <p style="color: black; font-weight: bold">Renk :<span style="color: gray; font-weight: normal"> @Model.ColorName</span></p>
             <br/>
-            <p>Beden Tablosu</p>
+            <p><i class="fa-solid fa-ruler-horizontal"></i> Beden Tablosu</p>
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     Numara Seciniz
@@ -33,28 +34,28 @@
                     <li><a class="dropdown-item" href="#">45</a></li>
                 </ul>
             </div>
-            <p>Tahmini Teslim Tarihi @(DateTime.Today.AddDays(3).Day) @ViewBag.Month1 - @(DateTime.Today.AddDays(7).Day) @ViewBag.Month2</p>
-            <button class="btn btn-success px-5 py-2">Sepete Ekle</button>
+            <p class="mt-3"><i class="fa-solid fa-truck"></i> Tahmini Teslim Tarihi : <span class="font-weight-bold">@(DateTime.Today.AddDays(3).Day) @ViewBag.Month1 - @(DateTime.Today.AddDays(7).Day) @ViewBag.Month2</span></p>
+            <button class="btn font-weight-bold" style="background-color: green; color: white; padding: 20px 65px;">Sepete Ekle</button>
         </div>
     </div>
 </div>
 <div class="container-lg mt-5">
     <div class="row">
         <div class="col-4">
-            <img src="@Model.ImageUrl3" alt="@Model.Name" style="width: 80%"/>
+            <img src="@Model.ImageUrl3" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
         </div>
         <div class="col-4">
-            <img src="@Model.ImageUrl4" alt="@Model.Name" style="width: 80%"/>
+            <img src="@Model.ImageUrl4" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
         </div>
         <div class="col-4">
             <h5>Ürün Özellikleri</h5>
             <hr/>
-            <p>Ürün Kodu :<span>@Model.ID</span></p>
-            <p>Marka :<span>@Model.BrandName</span></p>
-            <p>Kategori :<span>@Model.CategoryName</span></p>
-            <p>Renk :<span>@Model.ColorName</span></p>
-            <p>Cinsiyet :<span>@Model.GenderName</span></p>
-            <p>Dış Materyal :<span>@Model.Material</span></p>
+            <p style="color: gray; margin-top: 25px; font-weight: bold">Ürün Kodu      :<span> @Model.ID</span></p>
+            <p style="color: gray; margin-top: 25px; font-weight: bold">Marka          :<span> @Model.BrandName</span></p>
+            <p style="color: gray; margin-top: 25px; font-weight: bold">Kategori       :<span> <a asp-controller="Home" asp-action="Index" asp-route-catName="@Model.CategoryName" style="text-decoration-color: black; color: black; font-weight: bold"> @Model.CategoryName</a></span></p>
+            <p style="color: gray; margin-top: 25px; font-weight: bold">Renk           :<span> @Model.ColorName</span></p>
+            <p style="color: gray; margin-top: 25px; font-weight: bold">Cinsiyet       :<span> @Model.GenderName</span></p>
+            <p style="color: gray; margin-top: 25px; font-weight: bold">Dış Materyal   :<span> @Model.Material</span></p>
         </div>
     </div>
 </div>

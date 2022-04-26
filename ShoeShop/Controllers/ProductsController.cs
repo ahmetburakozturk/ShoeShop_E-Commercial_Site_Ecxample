@@ -16,7 +16,8 @@ namespace ShoeShopWeb.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IGenderService _genderService;
 
-        public ProductsController(IProductService productService,ICategoryService categoryService,IBrandService brandService, IColorService colorService, IGenderService genderService)
+        public ProductsController(IProductService productService,ICategoryService categoryService,
+            IBrandService brandService, IColorService colorService, IGenderService genderService)
         {
             _productService = productService;
             _categoryService = categoryService;
@@ -28,7 +29,7 @@ namespace ShoeShopWeb.Controllers
         {
             var products = _productService.GetAllProducts();
             var productsPerPage = 5;
-            var paginatedProducts = products.OrderBy(x => x.Name)
+            var paginatedProducts = products.OrderBy(x => x.ID)
                 .Skip((page - 1) * productsPerPage)
                 .Take(productsPerPage);
             ViewBag.CurrentPage = page;
@@ -67,13 +68,16 @@ namespace ShoeShopWeb.Controllers
             return View(productWithDetails);
         }
 
-
         [HttpGet]
         public IActionResult Edit(int id)
         {
             if (_productService.isExist(id))
             {
                 UpdateProductRequest product = _productService.GetProductForUpdate(id);
+                ViewBag.Categories = GetCategoriesForDropdown();
+                ViewBag.Colors = GetColorsForDropdown();
+                ViewBag.Brands = GetBrandsForDropdown();
+                ViewBag.Genders = GetGendersForDropdown();
                 return View(product);
             }
 
@@ -91,7 +95,6 @@ namespace ShoeShopWeb.Controllers
             }
             return View();
         }
-
 
         private List<SelectListItem> GetCategoriesForDropdown()
         {

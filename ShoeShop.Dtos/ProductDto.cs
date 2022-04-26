@@ -4,14 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ShoeShop.Entities.Abstract;
+using ShoeShop.Entities;
 using ShoeShop.Entities.Concrete;
 
-namespace ShoeShop.Entities
+namespace ShoeShop.Dtos
 {
-    public class Product:IEntity
+    public class ProductDto
     {
-        [Key]
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Boş Bırakılamaz!")]
@@ -62,9 +61,9 @@ namespace ShoeShop.Entities
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public DateTime? ModifiedDate { get; set; }
         public bool IsActive { get; set; }
-        public Brand Brand { get; set; }
-        public Category Category { get; set; }
-        public Color Color { get; set; }
-        public Gender Gender { get; set; }
+        public string BrandName { get; set; }
+        public string CategoryName { get; set; }
+        public string GenderName { get; set; }
+        public string ColorName { get; set; }
     }
 }

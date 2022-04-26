@@ -29,6 +29,7 @@ namespace ShoeShop.DataAccess.Concrete.Repository
         public int Add(Product entity)
         {
             entity.Discount = entity.Discount / 10;
+            entity.Discount = entity.Discount / 10;
              _dbContext.Products.Add(entity);
             _dbContext.SaveChanges();
             return entity.ID;
@@ -50,22 +51,6 @@ namespace ShoeShop.DataAccess.Concrete.Repository
         public bool IsExists(int id)
         {
             return _dbContext.Products.Any(p => p.ID == id);
-        }
-
-        public IList<Product> GetByCategory(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public IList<Product> GetByBrand(int brandId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<Product> GetBySize(int size)
-        {
-            throw new NotImplementedException();
         }
 
     }

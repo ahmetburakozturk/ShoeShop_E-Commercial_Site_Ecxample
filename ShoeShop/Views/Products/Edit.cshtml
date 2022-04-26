@@ -1,12 +1,11 @@
-﻿@model ShoeShop.Dtos.Requests.UpdateProductRequest
+﻿@model UpdateProductRequest
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Düzenle</h1>
 
-<h4>UpdateProductRequest</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,22 +18,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="BrandID" class="control-label"></label>
-                <input asp-for="BrandID" class="form-control" />
+                <select class="form-control" asp-for="BrandID" asp-items="ViewBag.Brands"></select>
                 <span asp-validation-for="BrandID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryID" class="control-label"></label>
-                <input asp-for="CategoryID" class="form-control" />
+                <select class="form-control" asp-for="CategoryID" asp-items="ViewBag.Categories"></select>
                 <span asp-validation-for="CategoryID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ColorID" class="control-label"></label>
-                <input asp-for="ColorID" class="form-control" />
+                <select class="form-control" asp-for="ColorID" asp-items="ViewBag.Colors"></select>
                 <span asp-validation-for="ColorID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GenderID" class="control-label"></label>
-                <input asp-for="GenderID" class="form-control" />
+                <select class="form-control" asp-for="GenderID" asp-items="ViewBag.Genders"></select>
                 <span asp-validation-for="GenderID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -95,6 +94,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Show">Back to List</a>
 </div>
 

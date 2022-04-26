@@ -2,15 +2,20 @@
 
 <div class="col-3 mt-3">
     <a asp-controller="Products" asp-action="Details" asp-route-productID="@Model.ID" class="text-decoration-none">
-        <div class="card d-flex align-items-center shadow p-3 mb-5 bg-white rounded" style="background-color: rgb(252, 252, 252);">
+        <div class="card shadow p-3 mb-5 bg-white d-flex align-items-center" style="background-color: rgb(245, 245, 245); border-radius: 25px;">
             <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Name" style="width: 90%; height: 100%">
-            <div class="card-body d-flex align-items-center flex-column" style="background-color: rgb(252, 252, 252);">
-                <h5>@Model.BrandName</h5>
-                <h6 class="card-title mt-1">@Model.Name</h6>
-                <p class="card-text mt-1"><span class="text-danger font-weight-bold" style="text-decoration: line-through; text-decoration-color: red">@Model.Price TL </span><span class="text-light bg-success font-weight-bold p-2 ml-1" style="border-radius: 5px">@(Convert.ToInt32(Model.Price * (1 - Model.Discount))-0.01) TL</span></p>
+            <div class="card-body d-flex align-items-center flex-column">
+                <h5 class="text-dark font-weight-bold">@Model.BrandName</h5>
+                <h6 class="card-title mt-1 text-secondary">@Model.Name</h6>
+                <div>
+                    <span class="text-dark font-weight-bold" style="text-decoration: line-through; text-decoration-color: red;">@Model.Price TL </span>
+                    <p class="px-2 py-1 ml-2" style="color: white; background-color: green; border-radius: 10px; display: inline-block; "> %@(Convert.ToInt32((Model.Price-(Model.Price*(1-Model.Discount)))/(Model.Price/100)))</p>
+                </div>
+                <p class="card-text mt-1"><span style="color: orangered; font-weight: 800; font-size: larger">@(Convert.ToInt32(Model.Price * (1 - Model.Discount)) - 0.01) TL</span></p>
             </div>
         </div>
     </a>
 </div>
+
 
 
