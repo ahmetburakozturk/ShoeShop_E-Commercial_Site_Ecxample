@@ -1,0 +1,31 @@
+﻿@model Brand
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-sm mt-5" style="width: 70%">
+    <h1 style="font-weight: bold; color: orangered;">Marka Oluştur</h1>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label style="font-weight: bold" asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Oluştur" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a class="btn btn-outline-dark" asp-action="Show">Listeye geri dön</a>
+    </div>
+</div>
+
+

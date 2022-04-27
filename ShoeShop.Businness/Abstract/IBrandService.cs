@@ -11,5 +11,9 @@ namespace ShoeShop.Businness.Abstract
     {
         ICollection<Brand> GetAllBrands();
         Brand GetBrand(int id);
-    }
+        bool IsExist(int id);
+        void UpdateBrand(Brand brand);
+        void AddBrand(Brand brand);
+        void DeleteBrand(int brandId);
+    }   
 }

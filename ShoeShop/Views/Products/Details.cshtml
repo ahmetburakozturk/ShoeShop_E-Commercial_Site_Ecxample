@@ -12,7 +12,7 @@
             <h3 class="font-weight-bold">@Model.BrandName</h3>
             <h3 style="color: gray ">@Model.Name</h3>
             <p class="py-1 px-2" style="background-color: rgb(235,235,235); display: inline-block; border-radius: 10px; font-weight: bold">Kargo Bedava</p>
-            <h2 style="font-weight: 700; color: orangered">@(Convert.ToInt32(Model.Price * (1 - Model.Discount))-0.01) TL</h2>
+            <h2 style="font-weight: 700; color: orangered">@(Convert.ToInt32(Model.Price * (1 - (Model.Discount/100))) - 0.01) TL</h2>
             <br/>
             <p style="color: black; font-weight: bold">Renk :<span style="color: gray; font-weight: normal"> @Model.ColorName</span></p>
             <br/>

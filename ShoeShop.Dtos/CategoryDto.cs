@@ -15,6 +15,5 @@ namespace ShoeShop.Dtos
         [MinLength(3, ErrorMessage = "En az 3 karakter uzunluğunda olmalıdır!")]
         [Display(Name = "Kategori Adı")]
         public string Name { get; set; }
-        public ICollection<Product> Products { get; set; }
     }
 }

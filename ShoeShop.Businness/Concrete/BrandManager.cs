@@ -26,5 +26,25 @@ namespace ShoeShop.Businness.Concrete
         {
             return _brandRepository.GetById(id);
         }
+
+        public bool IsExist(int id)
+        {
+            return _brandRepository.IsExists(id);
+        }
+
+        public void UpdateBrand(Brand brand)
+        {
+            _brandRepository.Update(brand);
+        }
+
+        public void AddBrand(Brand brand)
+        {
+            _brandRepository.Add(brand);
+        }
+
+        public void DeleteBrand(int brandId)
+        {
+            _brandRepository.DeleteById(brandId);
+        }
     }
 }

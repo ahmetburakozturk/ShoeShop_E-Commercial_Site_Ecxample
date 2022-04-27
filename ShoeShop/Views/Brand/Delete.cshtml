@@ -1,0 +1,27 @@
+﻿@model Brand
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container-sm mt-5" style="width: 70%">
+    <h1 style="font-weight: bold; color: orangered;">Marka Sil</h1>
+    <hr/>
+
+    <h3>Bu Markayı Silmek istediğinize emin misiniz?</h3>
+    <div class="mt-5">
+        <dl class="row">
+            <dt class = "col-sm-3">
+                <p class="py-1 px-3">Marka Adı <span class="ml-3"> =></span></p>
+            </dt>
+            <dd class = "col-sm-2">
+                <p class="text-light bg-secondary py-1 px-3 font-weight-bold" style="border-radius: 6px; display: inline-block">@Html.DisplayFor(model => model.Name)</p> 
+            </dd>
+        </dl>
+        <form class="ml-5" asp-action="Delete">
+            <input type="submit" value="Sil" class="btn btn-danger font-weight-bold" /> |
+            <a class="btn btn-outline-dark" asp-action="Show">Listeye geri dön</a>
+        </form>
+    </div>
+
+</div>

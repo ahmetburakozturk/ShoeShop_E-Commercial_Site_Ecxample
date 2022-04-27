@@ -28,22 +28,28 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public int Add(Brand entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Brands.Add(entity);
+            _dbContext.SaveChanges();
+            return entity.ID;   
         }
 
         public int Update(Brand entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Brands.Update(entity);
+            _dbContext.SaveChanges();
+            return entity.ID;
         }
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var brand = _dbContext.Brands.FirstOrDefault(b => b.ID == id);
+            _dbContext.Brands.Remove(brand);
+            _dbContext.SaveChanges();
         }
 
         public bool IsExists(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Brands.Any(b => b.ID == id);
         }
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoeShop.Businness.Abstract;
 using ShoeShop.Dtos;
-using ShoeShop.Dtos.Requests;
 using ShoeShop.Entities;
 
 namespace ShoeShopWeb.Controllers

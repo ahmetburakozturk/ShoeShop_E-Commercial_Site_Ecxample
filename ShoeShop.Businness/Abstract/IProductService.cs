@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShoeShop.Dtos;
-using ShoeShop.Dtos.Requests;
-using ShoeShop.Dtos.Responses;
 using ShoeShop.Entities;
 
 namespace ShoeShop.Businness.Abstract

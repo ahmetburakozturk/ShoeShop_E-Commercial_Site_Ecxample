@@ -7,7 +7,6 @@ using AutoMapper;
 using ShoeShop.Businness.Abstract;
 using ShoeShop.DataAccess.Abstract;
 using ShoeShop.Dtos;
-using ShoeShop.Dtos.Requests;
 using ShoeShop.Entities;
 
 namespace ShoeShop.Businness.Concrete

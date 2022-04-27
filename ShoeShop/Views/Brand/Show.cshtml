@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Brand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-sm mt-5" style="width: 70%">
+    <h1 style="font-weight: bold; color: orangered">Markalar</h1>
+    <hr/>
+    <p>
+        <a class="btn btn-success" asp-action="Create">Marka Oluştur</a>
+    </p>
+    <div class="container-sm mt-1" style="width:100%">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        <p class="font-weight-bold bg-secondary px-3 py-1 text-light" style="display: inline-block; border-radius: 5px;">@Html.DisplayFor(modelItem => item.Name)</p>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-controller="Brand" asp-action="Edit" asp-route-id="@item.ID">Düzenle</a>
+                        <a class="btn btn-danger ml-4" asp-controller="Brand" asp-action="Delete" asp-route-id="@item.ID">Sil</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
