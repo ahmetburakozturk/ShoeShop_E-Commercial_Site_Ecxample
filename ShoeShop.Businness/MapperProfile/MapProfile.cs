@@ -25,6 +25,8 @@ namespace ShoeShop.Businness.MapperProfile
             CreateMap<DeleteProductRequest,Product>();
             CreateMap<CategoryDto,Category>();
             CreateMap<Category,CategoryDto>();
+            CreateMap<ProductDto,Product>();
+            CreateMap<Product,ProductDto>();
         }
     }
 }

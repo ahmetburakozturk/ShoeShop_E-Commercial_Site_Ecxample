@@ -1,12 +1,12 @@
-﻿@model AddProductRequest
+﻿@model ProductDto
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="container-sm mt-5" style="width: 80%">
+    <h1 class="font-weight-bold" style="color: orangered">Ürün Oluştur</h1>
 
-<h4>Product</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -48,6 +48,21 @@
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ImageUrl2" class="control-label"></label>
+                <input asp-for="ImageUrl2" class="form-control" />
+                <span asp-validation-for="ImageUrl2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl3" class="control-label"></label>
+                <input asp-for="ImageUrl3" class="form-control" />
+                <span asp-validation-for="ImageUrl3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl4" class="control-label"></label>
+                <input asp-for="ImageUrl4" class="form-control" />
+                <span asp-validation-for="ImageUrl4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
@@ -57,10 +72,10 @@
                 <input asp-for="Discount" class="form-control" />
                 <span asp-validation-for="Discount" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
-                <span asp-validation-for="IsActive" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
             </div>
             <div class="form-group">
                 <label asp-for="Material" class="control-label"></label>
@@ -68,14 +83,16 @@
                 <span asp-validation-for="Material" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Oluştur" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Show">Back to List</a>
+    <a class="btn btn-outline-dark" asp-action="Show">Listeye geri dön</a>
+</div>
+
 </div>
 
 @section Scripts {

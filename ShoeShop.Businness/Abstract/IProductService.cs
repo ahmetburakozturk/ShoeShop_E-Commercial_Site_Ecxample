@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShoeShop.Dtos;
 using ShoeShop.Dtos.Requests;
 using ShoeShop.Dtos.Responses;
 using ShoeShop.Entities;
@@ -12,12 +13,11 @@ namespace ShoeShop.Businness.Abstract
     public interface IProductService
     {
         ICollection<Product> GetAllProducts();
-        Product GetProductById(int id);
-        int CreateProduct(AddProductRequest productRequest);
-        ICollection<ProductListResponse> GetAllProductsWithInfo();
-        ProductDetailsResponse GetProductWithDetails(int id);
-        UpdateProductRequest GetProductForUpdate(int id);
-        int UpdateProduct(UpdateProductRequest productRequest);
+        ICollection<ProductDto> GetAllActiveProductsWithBrand();
+        int CreateProduct(ProductDto productDto);
+        ProductDto GetProductByIdWithDetails(int id);
+        ProductDto GetProductById(int id);
+        int UpdateProduct(ProductDto productDto);
         bool isExist(int id);
     }
 }

@@ -25,12 +25,9 @@ namespace ShoeShop.Controllers
 
         public IActionResult Index(int page,string? catName,int? genderID, int? brandID, int? colorID)
         {
-            var categories = _categoryService.GetAllCategories().ToList().Where(c => c.Name == catName);
-            var category = categories.LastOrDefault();
             var products = catName != null
-                ? _productService.GetAllProductsWithInfo().Where(p => p.CategoryName == catName).ToList().Where(p=>p.IsActive==true).ToList()
-                : _productService.GetAllProductsWithInfo().Where(p=>p.IsActive==true).ToList();
-            //var products = _productService.GetAllProducts();
+                ? _productService.GetAllActiveProductsWithBrand().Where(p => p.CategoryName == catName).ToList()
+                : _productService.GetAllActiveProductsWithBrand();
             products = genderID != null ? products.Where(p => p.GenderID == genderID).ToList() : products;
             products = brandID != null ? products.Where(p => p.BrandID == brandID).ToList() : products;
             products = colorID != null ? products.Where(p => p.ColorID == colorID).ToList() : products;

@@ -4,53 +4,59 @@
     ViewData["Title"] = "Show";
 }
 
-
-<h1>Ürünler</h1>
-
-<p>
-    <a class="btn btn-primary" asp-action="Create">Ürün Oluştur</a>
-</p>
-<table class="table">
-    <thead>
-    <tr>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model) {
+<div class="container-sm mt-5" style="width: 100%">
+    <h1 class="font-weight-bold" style="color: orangered">Ürünler</h1>
+    <hr/>
+    <p>
+        <a class="btn btn-success" asp-action="Create">Ürün Oluştur</a>
+    </p>
+    <table class="table">
+        <thead>
         <tr>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td class="text-center ">
-                <img src="@item.ImageUrl" class="img-thumbnail" alt="product image" style="width: 30%;height: 30%"/>
-            </td>
-            <td class="text-center">
-                @Html.ActionLink("Düzenle", "Edit", new {  id=item.ID }) |
-                @Html.ActionLink("Detaylar", "Details", new {  productID=item.ID }) |
-            </td>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th class="text-center">
+                İşlemler
+            </th>
+            <th></th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center">
+                    <img src="@item.ImageUrl" class="img-thumbnail" alt="product image" style="width: 20%;"/>
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-warning" asp-controller="Products" asp-action="Edit" asp-route-id="@item.ID">Düzenle & Sil</a>
+                    <a class="btn btn-outline-info" asp-controller="Products" asp-action="Details" asp-route-productID="@item.ID">Detaylar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 
-<ul class="pagination justify-content-center mt-3">
-    @for (var i = 1; i <= ViewBag.TotalPages; i++)
-    {
-        <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
-            <a class="page-link " asp-action="Show" asp-route-page="@i">@i</a>
-        </li>
-    }
-</ul>
+    <ul class="pagination justify-content-center mt-3">
+        @for (var i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
+                <a class="page-link " asp-action="Show" asp-route-page="@i">@i</a>
+            </li>
+        }
+    </ul>
+
+</div>
+

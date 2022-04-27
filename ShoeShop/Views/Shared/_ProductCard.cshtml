@@ -1,4 +1,4 @@
-﻿@model ProductListResponse
+﻿@model ProductDto
 
 <div class="col-3 mt-3">
     <a asp-controller="Products" asp-action="Details" asp-route-productID="@Model.ID" class="text-decoration-none">
@@ -9,9 +9,9 @@
                 <h6 class="card-title mt-1 text-secondary">@Model.Name</h6>
                 <div>
                     <span class="text-dark font-weight-bold" style="text-decoration: line-through; text-decoration-color: red;">@Model.Price TL </span>
-                    <p class="px-2 py-1 ml-2" style="color: white; background-color: green; border-radius: 10px; display: inline-block; "> %@(Convert.ToInt32((Model.Price-(Model.Price*(1-Model.Discount)))/(Model.Price/100)))</p>
+                    <p class="px-2 py-1 ml-2" style="color: white; background-color: green; border-radius: 10px; display: inline-block; "> %@(Convert.ToInt32((Model.Price-(Model.Price*(1-Model.Discount)))/Model.Price))</p>
                 </div>
-                <p class="card-text mt-1"><span style="color: orangered; font-weight: 800; font-size: larger">@(Convert.ToInt32(Model.Price * (1 - Model.Discount)) - 0.01) TL</span></p>
+                <p class="card-text mt-1"><span style="color: orangered; font-weight: 800; font-size: larger">@(Convert.ToInt32(Model.Price * (1 - (Model.Discount/100))) - 0.01) TL</span></p>
             </div>
         </div>
     </a>

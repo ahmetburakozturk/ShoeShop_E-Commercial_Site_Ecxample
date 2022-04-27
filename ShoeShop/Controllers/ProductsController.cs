@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShoeShop.Businness.Abstract;
+using ShoeShop.Dtos;
 using ShoeShop.Dtos.Requests;
 
 namespace ShoeShopWeb.Controllers
@@ -48,11 +49,11 @@ namespace ShoeShopWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(AddProductRequest productRequest)
+        public IActionResult Create(ProductDto productDto)
         {
             if (ModelState.IsValid)
             {
-                _productService.CreateProduct(productRequest);
+                _productService.CreateProduct(productDto);
                 return RedirectToAction(nameof(Show));
             }
 
@@ -62,7 +63,7 @@ namespace ShoeShopWeb.Controllers
         [HttpGet]
         public IActionResult Details(int productID)
         {
-            var productWithDetails = _productService.GetProductWithDetails(productID);
+            var productWithDetails = _productService.GetProductByIdWithDetails(productID);
             ViewBag.Month1 = GetMonthToDelivery(3);
             ViewBag.Month2 = GetMonthToDelivery(7);
             return View(productWithDetails);
@@ -73,7 +74,7 @@ namespace ShoeShopWeb.Controllers
         {
             if (_productService.isExist(id))
             {
-                UpdateProductRequest product = _productService.GetProductForUpdate(id);
+                ProductDto product = _productService.GetProductById(id);
                 ViewBag.Categories = GetCategoriesForDropdown();
                 ViewBag.Colors = GetColorsForDropdown();
                 ViewBag.Brands = GetBrandsForDropdown();
@@ -86,11 +87,11 @@ namespace ShoeShopWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(UpdateProductRequest productRequest)
+        public IActionResult Edit(ProductDto productDto)
         {
             if (ModelState.IsValid)
             {
-                _productService.UpdateProduct(productRequest);
+                _productService.UpdateProduct(productDto);
                 return RedirectToAction(nameof(Show));
             }
             return View();
