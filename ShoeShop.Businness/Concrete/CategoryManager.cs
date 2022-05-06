@@ -49,5 +49,10 @@ namespace ShoeShop.Businness.Concrete
             var category = _mapper.Map<Category>(categoryDto);
             _categoryRepository.Add(category);
         }
+
+        public void DeleteCategoryById(int categoryDtoId)
+        {
+            _categoryRepository.DeleteById(categoryDtoId);
+        }
     }
 }

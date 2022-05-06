@@ -40,6 +40,8 @@ namespace ShoeShop
             services.AddScoped<IColorService,ColorManager>();
             services.AddScoped<IGenderRepository,EfGenderRpository>();
             services.AddScoped<IGenderService,GenderManager>();
+            services.AddScoped<IStockRepository, EfStockRepository>();
+            services.AddScoped<IStockService, StockManager>();
             var connectionString = Configuration.GetConnectionString("db");
             services.AddDbContext<ShoeShopDbContext>(opt => opt.UseNpgsql(connectionString));
             services.AddAutoMapper(typeof(MapProfile));
@@ -77,6 +79,7 @@ namespace ShoeShop
                     name: "",
                     pattern: "{catName}/Sayfa{page}",
                     defaults: new { controller = "Home", action = "Index", page = 1 });
+                
                 endpoints.MapControllerRoute(
                     name: "",
                     pattern: "Detaylar/{productID}",

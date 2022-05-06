@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ShoeShop.Businness.Abstract;
+using ShoeShop.Entities;
 
 namespace ShoeShop.Controllers
 {
@@ -14,30 +15,35 @@ namespace ShoeShop.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
-        private readonly ICategoryService _categoryService;
 
         public HomeController(ILogger<HomeController> logger,IProductService productService, ICategoryService categoryService)
         {
             _logger = logger;
             _productService = productService;
-            _categoryService = categoryService;
         }
 
         public IActionResult Index(int page,string? catName,int? genderID, int? brandID, int? colorID)
         {
-            var products = catName != null
-                ? _productService.GetAllActiveProductsWithBrand().Where(p => p.CategoryName == catName).ToList()
-                : _productService.GetAllActiveProductsWithBrand();
-            products = genderID != null ? products.Where(p => p.GenderID == genderID).ToList() : products;
-            products = brandID != null ? products.Where(p => p.BrandID == brandID).ToList() : products;
-            products = colorID != null ? products.Where(p => p.ColorID == colorID).ToList() : products;
-            var productsPerPage = 8;
+            var products = catName == null ? _productService.GetAllActiveProductsWithBrand() : catName=="-1" ? _productService.GetAllActiveProductsWithBrand() :
+                 _productService.GetAllActiveProductsWithBrand().Where(p => p.CategoryName == catName).ToList();
+
+            products = genderID == null ? products : genderID == -1 ? products : products.Where(p => p.GenderID == genderID).ToList();
+
+            products = brandID == null ? products : brandID == -1 ? products : products.Where(p => p.BrandID == brandID).ToList();
+
+
+            products = colorID == null ? products : colorID == -1? products : products.Where(p => p.ColorID == colorID).ToList();
+
+            var productsPerPage = 6;
             var paginatedProducts = products.OrderBy(x => x.Name)
                 .Skip((page - 1) * productsPerPage)
                .Take(productsPerPage);
+            var latesProducts = products.OrderByDescending(x => x.ID)
+                .Take(productsPerPage);
+            ViewBag.Latest = latesProducts;
             ViewBag.CurrentPage = page;
             ViewBag.CurrentCategory = catName;
-            ViewBag.CurrentGender = genderID;
+            ViewBag.CurrentGenderID = genderID;
             ViewBag.CurrentBrandID = brandID;
             ViewBag.CurrentColorID = colorID;
             ViewBag.TotalPages = Math.Ceiling((decimal)products.Count / productsPerPage);

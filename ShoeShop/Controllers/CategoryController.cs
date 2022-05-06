@@ -60,5 +60,30 @@ namespace ShoeShopWeb.Controllers
 
             return View();
         }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            if (_categoryService.isExist(id))
+            {
+                var category = _categoryService.GetCategoryById(id);
+                return View(category);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(CategoryDto categoryDto)
+        {
+            if (_categoryService.isExist(categoryDto.ID))
+            {
+                _categoryService.DeleteCategoryById(categoryDto.ID);
+                return RedirectToAction(nameof(Show), nameof(Category));
+            }
+
+            return View();
+        }
     }
 }

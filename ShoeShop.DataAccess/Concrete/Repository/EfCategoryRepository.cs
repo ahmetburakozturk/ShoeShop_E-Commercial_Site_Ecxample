@@ -29,6 +29,7 @@ namespace ShoeShop.DataAccess.Concrete.Repository
         public int Add(Category entity)
         {
             _dbContext.Categories.Add(entity);
+            _dbContext.SaveChanges();
             return entity.ID;
         }
 
@@ -41,7 +42,9 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var cagtegory = _dbContext.Categories.Find(id);
+            _dbContext.Categories.Remove(cagtegory);
+            _dbContext.SaveChanges();
         }
 
         public bool IsExists(int id)

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShoeShop.DataAccess.Abstract;
@@ -9,9 +10,10 @@ using ShoeShop.DataAccess.Abstract;
 namespace ShoeShop.DataAccess.Migrations
 {
     [DbContext(typeof(ShoeShopDbContext))]
-    partial class ShoeShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220502143937_newUpd")]
+    partial class newUpd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

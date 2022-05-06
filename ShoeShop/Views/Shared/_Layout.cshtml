@@ -10,23 +10,22 @@
     <link rel="stylesheet" href="/style.css" type="text/css"/>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="/StyleSheet.css" type="text/css"/>
+    <link rel="stylesheet" href="/swiper.css" type="text/css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+
 </head>
-<body style="background-color: rgb(247,247,247)">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body style="background-color: rgb(250, 250, 250);">
+<header>
+    <div id="head">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="/Home/Index"><img src="/images/shoe3.png" alt="Logo" class="img-fluid"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav mx-auto">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control sm-2" type="search" placeholder="Ürün Ara..." aria-label="Search" style="width: 35em">
-                            <button class="btn btn-dark my-sm-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
-                    </ul>
+                    <div style="width: 55em;"></div>
                     <div class="d-flex">
                         <button class="btn btn-outline-dark ms-3"><i class="fa-solid fa-basket-shopping mr-2"></i>Sepetim</button>
                         <button class="btn btn-outline-dark ms-3" style="border-radius: 50px;"><i class="fa-solid fa-user"></i></button>
@@ -34,10 +33,15 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container-fluid px-5">
+        <div class="container-fluid">
+            <p class="GeneratedMarquee">Tüm Alışverişlerinizde Sepet Tutarının %2'si Kadar Sneaks.ON Puan Hediye Üstelik Kargo Ücretsiz</p>
+        </div>
+    </div>
+    
+</header>
+    <div class="container-fluid px-5" style="margin-top: 9rem">
         <main role="main" class="pb-3">
-            <div class="container-sm">
+            <div class="container-fluid">
                 <div class="mt-3">
                     @RenderBody()
                 </div>
@@ -52,9 +56,28 @@
     </footer>
         <script src="https://kit.fontawesome.com/3417e16898.js" crossorigin="anonymous"></script>
         <script src="sweetalert2.all.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
         @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

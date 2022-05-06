@@ -1,0 +1,28 @@
+﻿@model ShoeShop.Dtos.CategoryDto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="container-sm" style="width: 65%;">
+    <h2 style="color: orangered; font-weight: bold;">Kategori Sil</h2>
+    <hr />
+    <h4>Bu kategoriyi silmek istiyor musunuz?</h4> 
+    <div>
+        <dl class="row mt-4">
+            <dt class = "col-sm-3">
+                <p style="background-color: gray; border-radius: 5px; padding: 4px; color: white; display: inline-block;">@Html.DisplayNameFor(model => model.Name)</p> 
+            </dt>
+            <dd class = "col-sm-9">
+                <p style="background-color: transparent; border-radius: 5px; padding: 4px; font-weight: bold;">@Html.DisplayFor(model => model.Name)</p> 
+            </dd>
+        </dl>
+        <form asp-action="Delete">
+            <input type="submit" value="Sil" class="btn btn-danger font-weight-bold" />
+            <br/>
+            <a asp-action="Show" class="btn btn-outline-dark mt-3 font-weight-bold">Listeye Geri Dön</a>
+        </form>
+    </div>
+</div>
+

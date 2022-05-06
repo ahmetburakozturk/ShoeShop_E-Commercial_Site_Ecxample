@@ -40,8 +40,10 @@
                 <td class="text-center">
                     <img src="@item.ImageUrl" class="img-thumbnail" alt="product image" style="width: 20%;"/>
                 </td>
-                <td class="text-center">
+                <td class="text-center d-flex flex-column align-items-center">
+                    <br/>
                     <a class="btn btn-warning" asp-controller="Products" asp-action="Edit" asp-route-id="@item.ID">Düzenle & Sil</a>
+                    <br/>
                     <a class="btn btn-outline-info" asp-controller="Products" asp-action="Details" asp-route-productID="@item.ID">Detaylar</a>
                 </td>
             </tr>

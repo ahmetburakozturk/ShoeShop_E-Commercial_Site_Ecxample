@@ -1,40 +1,58 @@
 ﻿@model IEnumerable<ProductDto>
 
-@if (ViewBag.CurrentCategory == null)
-{
-    <div class="container-lg my-3">
-        <img src="/images/banner.jpg" class="img-fluid"/>
-    </div>
-}
-
-<div class="container-sm">
-    <div class="row">
-        <div class="col-1">
-            @await Component.InvokeAsync("Menu")
+<div class="container-md">
+    <div class="swiper mySwiper mt-5">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/images/banner.jpg" class="img-fluid"/></div>
+            <div class="swiper-slide"><img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/29/web_slider.jpg" class="img-fluid"/></div>  
+            <div class="swiper-slide"><img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/29/hafta_sonu_superfiyat.gif" class="img-fluid"/></div>
+            <div class="swiper-slide"><img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/21/5yenisezon.gif" class="img-fluid"/></div>    
+            <div class="swiper-slide"><img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/28/1bayram.jpg" class="img-fluid"/></div>    
         </div>
-        <div class="col-1">
-            @await Component.InvokeAsync("Gender")
-        </div>
-        <div class="col-1">
-            @await Component.InvokeAsync("BrandFilter")
-        </div>
-        <div class="col-1">
-            @await Component.InvokeAsync("ColorFilter")
-        </div>
-    </div>
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <partial name="_ProductCard" model="item"/>
-        }
+        <div class="swiper-button-next font-weight-bold p-5" style="color: orangered; border-radius: 50px;"></div>
+        <div class="swiper-button-prev font-weight-bold p-5" style="color: orangered; border-radius: 50px"></div>
+        <div class="swiper-pagination"></div>
     </div>
 </div>
 
-<ul class="pagination justify-content-center mt-3">
-    @for (var i = 1; i <= ViewBag.TotalPages; i++)
-    {
-        <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
-            <a class="page-link " asp-action="Index" asp-route-page="@i" asp-route-catName="@ViewBag.CurrentCategory">@i</a>
-        </li>
-    }
-</ul>
+
+<div class="container-lg mt-3">
+    <div class="row">
+        <div class="col-3 mt-5">
+            <div class="">
+                    @await Component.InvokeAsync("Menu")
+                </div>
+                <div class="">
+                    @await Component.InvokeAsync("Gender")
+                </div>
+                <div class="">
+                    @await Component.InvokeAsync("BrandFilter")
+                </div>
+                <div class="">
+                    @await Component.InvokeAsync("ColorFilter")
+                </div>
+        </div>
+        <div class="col-9" id="prdCard">
+            <div class="row" id="myUL">
+                @foreach (var item in Model)
+                {
+                    <partial name="_ProductCard" model="item"/>
+                }
+            </div>
+            <ul class="pagination justify-content-center mt-3">
+                @for (var i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
+                        <a class="page-link " asp-action="Index" asp-route-page="@i" asp-route-catName="@ViewBag.CurrentCategory">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+
+

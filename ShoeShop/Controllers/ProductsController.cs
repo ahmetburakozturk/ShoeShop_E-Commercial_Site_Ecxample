@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShoeShop.Businness.Abstract;
@@ -8,6 +9,7 @@ using ShoeShop.Dtos;
 
 namespace ShoeShopWeb.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
@@ -15,15 +17,17 @@ namespace ShoeShopWeb.Controllers
         private readonly IBrandService _brandService;
         private readonly ICategoryService _categoryService;
         private readonly IGenderService _genderService;
+        private readonly IStockService _stockService;
 
         public ProductsController(IProductService productService,ICategoryService categoryService,
-            IBrandService brandService, IColorService colorService, IGenderService genderService)
+            IBrandService brandService, IColorService colorService, IGenderService genderService, IStockService stockService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _brandService = brandService;
             _colorService = colorService;
             _genderService = genderService;
+            _stockService = stockService;
         }
         public IActionResult Show(int page)
         {
@@ -63,6 +67,7 @@ namespace ShoeShopWeb.Controllers
         public IActionResult Details(int productID)
         {
             var productWithDetails = _productService.GetProductByIdWithDetails(productID);
+            ViewBag.Sizes = GetSizes(productID);
             ViewBag.Month1 = GetMonthToDelivery(3);
             ViewBag.Month2 = GetMonthToDelivery(7);
             return View(productWithDetails);
@@ -164,6 +169,15 @@ namespace ShoeShopWeb.Controllers
                 default:
                     return "";
             }
+        }
+        private List<SelectListItem> GetSizes(int id)
+        {
+            var selectedItems = new List<SelectListItem>();
+            _stockService.GetSizes(id).ToList().ForEach(stk => selectedItems.Add(new
+                SelectListItem
+                { Text = stk.SizeName, Value = stk.StockID.ToString() }
+            ));
+            return selectedItems;
         }
 
     }

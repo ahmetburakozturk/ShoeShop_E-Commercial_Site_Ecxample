@@ -73,5 +73,7 @@ namespace ShoeShop.Entities
         public Category Category { get; set; }
         public Color Color { get; set; }
         public Gender Gender { get; set; }
+
+        public ICollection<Stock> Stocks { get; set; }
     }
 }

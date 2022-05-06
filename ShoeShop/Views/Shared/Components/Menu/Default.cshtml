@@ -1,22 +1,38 @@
-﻿@using System.Linq
-@model IEnumerable<Category>
+﻿@model IEnumerable<Category>
 
-@*<div class="list-group list-group-flush">*@
-@*@foreach (var category in Model)
-    {
-        <a asp-action="Index" asp-controller="Home" class="list-group-item list-group-item-action @(category.Name==ViewBag.CurrentCategory ? "active list-group-item-info":"")" asp-route-catName="@category.Name" style="font-weight: bold;">@category.Name</a>
-    }*@
-
-
-<div class="dropdown">
-    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="False">
-        Kategori
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+<div class="" style="border: 0.2px rgb(200,200,200) solid; border-top-left-radius: 10px; border-top-right-radius: 10px; border-color: orangered;">
+    <p style="font-weight: 600; color: white;background-color: orangered; padding-left: 10px;
+              border-top-left-radius: 10px; border-top-right-radius: 10px;">Kategori</p>
+    <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
         @foreach (var cat in Model)
         {
-            <li><a class="dropdown-item btn btn-dark @(cat.Name==ViewBag.CurrentCategory ? "active":"")" asp-action="Index" asp-controller="Home" asp-route-catName="@cat.Name">@cat.Name</a></li>
-        }   
-    </ul>
+            if (ViewBag.CurrentCategory == cat.Name)
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-catName="@cat.Name" asp-route-genderID="@ViewBag.CurrentGenderID"
+                   asp-route-brandID="@ViewBag.CurrentBrandID" asp-route-colorID="@ViewBag.CurrentColorID"
+                   style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">> @cat.Name</a>
+                <br />
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-catName="@cat.Name" asp-route-genderID="@ViewBag.CurrentGenderID"
+                   asp-route-brandID="@ViewBag.CurrentBrandID" asp-route-colorID="@ViewBag.CurrentColorID"
+                   style="color: black; margin-left: 10px; text-decoration: none; font-weight: 400;">@cat.Name</a>
+                <br />
+            }
+        }
+        
+        @if (ViewBag.CurrentCategory == "-1" || ViewBag.CurrentCategory == null)
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-brandID="@ViewBag.CurrentBrandID"
+               asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="-1" 
+               style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">Tümünü Göster</a>
+        }
+        else
+        {
+            <a asp-controller="Home" asp-action="Index"asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-brandID="@ViewBag.CurrentBrandID"
+               asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="-1" 
+               style="color: black; margin-left: 10px; text-decoration: none;  font-weight: 400;">Tümünü Göster</a>
+        }
+    </div>
 </div>
-@*</div>*@

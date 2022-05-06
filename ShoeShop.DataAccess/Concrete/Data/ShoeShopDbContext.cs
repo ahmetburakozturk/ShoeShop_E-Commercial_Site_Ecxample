@@ -21,6 +21,7 @@ namespace ShoeShop.DataAccess.Abstract
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +43,11 @@ namespace ShoeShop.DataAccess.Abstract
             modelBuilder.Entity<Product>().HasOne(p => p.Gender)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.GenderID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Stock>().HasOne(p => p.Product)
+                .WithMany(c => c.Stocks)
+                .HasForeignKey(p => p.ProductID)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

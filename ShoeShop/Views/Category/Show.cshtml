@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShoeShop.Entities.Category>
+﻿@model IEnumerable<Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,14 +11,11 @@
     <h1 style="color: orangered; font-weight: bold">Kategoriler</h1>
     <hr/>
     <p>
-        <a class="btn btn-success px-4 py-3" asp-action="Create">Yeni Kategori Oluştur</a>
+        <a class="btn btn-success px-2 py-2" asp-action="Create">Yeni Kategori Oluştur</a>
     </p>
     <table class="table">
         <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -30,14 +27,11 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a class="btn btn-warning text-light font-weight-bold" asp-controller="Category" asp-action="Edit" asp-route-id="@item.ID">Düzenle</a>
-                    <a class="btn btn-danger font-weight-bold ml-3" asp-controller="Category">Sil</a>
+                    <a class="btn btn-warning text-dark font-weight-bold" asp-controller="Category" asp-action="Edit" asp-route-id="@item.ID">Düzenle</a>
+                    <a class="btn btn-danger font-weight-bold ml-3" asp-controller="Category" asp-action="Delete" asp-route-id="@item.ID">Sil</a>
                 </td>
             </tr>
         }

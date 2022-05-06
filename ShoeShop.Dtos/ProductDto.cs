@@ -71,5 +71,7 @@ namespace ShoeShop.Dtos
         public string CategoryName { get; set; }
         public string GenderName { get; set; }
         public string ColorName { get; set; }
+        public int ShoeSize { get; set; }
+        public int StockNumber { get; set; }
     }
 }

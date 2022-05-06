@@ -1,15 +1,36 @@
-﻿@using System.Linq
-@model IEnumerable<Gender>
+﻿@model IEnumerable<Gender>
 
-
-<div class="dropdown">
-    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="False">
-        Cinsiyet
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+<div style="border: 0.2px rgb(200,200,200) solid;  border-color: orangered;">
+    <p style="font-weight: 600; color: white;background-color: orangered; padding-left: 10px;">Cinsiyet</p>
+    <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
         @foreach (var gen in Model)
         {
-            <li><a class="dropdown-item btn btn-dark @(gen.ID==ViewBag.CurrentGender ? "active":"")" asp-action="Index" asp-controller="Home" asp-route-genderID="@gen.ID"asp-route-genderName="@gen.Name" >@gen.Name</a></li>
-        }   
-    </ul>
+            if (ViewBag.CurrentGenderID == gen.ID)
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-genderID="@gen.ID" asp-route-brandID="@ViewBag.CurrentBrandID"
+                   asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="@ViewBag.CurrentCategory" 
+                   style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">> @gen.Name</a>
+                <br />
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-genderID="@gen.ID" asp-route-brandID="@ViewBag.CurrentBrandID"
+                   asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="@ViewBag.CurrentCategory"  
+                   style="color: black; margin-left: 10px; text-decoration: none;  font-weight: 400;">@gen.Name</a>
+                <br />
+            }
+        }
+        @if (ViewBag.CurrentGenderID == -1 || ViewBag.CurrentGenderID == null)
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-genderID="-1" asp-route-brandID="@ViewBag.CurrentBrandID"
+               asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="@ViewBag.CurrentCategory" 
+               style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">Tümünü Göster</a>
+        }
+        else
+        {
+            <a asp-controller="Home" asp-action="Index"asp-route-genderID="-1" asp-route-brandID="@ViewBag.CurrentBrandID"
+               asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="@ViewBag.CurrentCategory" 
+               style="color: black; margin-left: 10px; text-decoration: none;  font-weight: 400;">Tümünü Göster</a>
+        }
+    </div>
 </div>
