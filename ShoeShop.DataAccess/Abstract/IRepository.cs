@@ -14,7 +14,6 @@ namespace ShoeShop.DataAccess.Abstract
         int Add(T entity);
         int Update(T entity);
         void DeleteById(int id);
-        bool IsExists(int id);
 
     }
 }

@@ -1,15 +1,22 @@
 ﻿@using System.Security.Cryptography
 @model ProductDto
 
-<div class="container-sm mt-5" style="width: 90%;">
+<div class="container-sm mt-5" style="width: 100%; margin-left: 20%;">
     <div class="row">
-        <div class="col-4">
-            <img src="@Model.ImageUrl" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
+        <div class="col-5">
+            <div class="swiper mySwiper" >
+                <div class="swiper-wrapper" style="width: 400px; height: 600px;">
+                    <div class="swiper-slide"><img src="@Model.ImageUrl" class="img-fluid"/></div>
+                    <div class="swiper-slide"><img src="@Model.ImageUrl2" class="img-fluid"/></div>
+                    <div class="swiper-slide"><img src="@Model.ImageUrl3" class="img-fluid"></div>
+                    <div class="swiper-slide"><img src="@Model.ImageUrl4" class="img-fluid"/></div>
+                </div>
+                <div class="swiper-button-next font-weight-bold p-5" style="color: orangered; border-radius: 50px;"></div>
+                <div class="swiper-button-prev font-weight-bold p-5" style="color: orangered; border-radius: 50px"></div>
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
-        <div class="col-4">
-            <img src="@Model.ImageUrl2" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
-        </div>
-        <div class="col-4">
+        <div class="col-6 ml-3">
             <h3 class="font-weight-bold">@Model.BrandName</h3>
             <h3 style="color: gray ">@Model.Name</h3>
             <p class="py-1 px-2" style="background-color: rgb(235,235,235); display: inline-block; border-radius: 10px; font-weight: bold">Kargo Bedava</p>
@@ -20,20 +27,9 @@
             <p><i class="fa-solid fa-ruler-horizontal"></i> Beden Tablosu</p>
             <select class="form-group px-2 py-2 bg-light text-dark text-center font-weight-bold" style="border-radius: 5px" asp-items="ViewBag.Sizes"><option value="" class="text-dark" disabled selected>Numara Seçiniz</option></select>
             <p class="mt-3"><i class="fa-solid fa-truck"></i> Tahmini Teslim Tarihi : <span class="font-weight-bold">@(DateTime.Today.AddDays(3).Day) @ViewBag.Month1 - @(DateTime.Today.AddDays(7).Day) @ViewBag.Month2</span></p>
-            <button class="btn font-weight-bold" style="background-color: green; color: white; padding: 20px 65px;">Sepete Ekle</button>
-        </div>
-    </div>
-</div>
-<div class="container-sm mt-5" style="width: 90%;">
-    <div class="row">
-        <div class="col-4">
-            <img src="@Model.ImageUrl3" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
-        </div>
-        <div class="col-4">
-            <img src="@Model.ImageUrl4" alt="@Model.Name" style="width: 95%; border-radius: 25px;"/>
-        </div>
-        <div class="col-4">
-            <h5>Ürün Özellikleri</h5>
+            <a class="btn font-weight-bold sepet" data-id="@Model.ID" style="background-color: green; color: white; padding: 15px 55px;">Sepete Ekle</a>
+            <br/>
+            <h5 class="mt-3">Ürün Özellikleri</h5>
             <hr/>
             <p style="color: gray; margin-top: 25px; font-weight: bold">Ürün Kodu      :<span> @Model.ID</span></p>
             <p style="color: gray; margin-top: 25px; font-weight: bold">Marka          :<span> @Model.BrandName</span></p>
@@ -44,3 +40,24 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.sepet').on('click',
+                function() {
+                    let id = $(this).data('id');
+                    $.ajax({
+                        url: '/Cart/Add/' + id,  
+                        type:'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            alertify.success(data);
+                        }
+                    });
+                });
+        });
+    </script>
+}

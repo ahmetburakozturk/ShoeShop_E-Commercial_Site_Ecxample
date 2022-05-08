@@ -9,7 +9,7 @@ using ShoeShop.Dtos;
 
 namespace ShoeShopWeb.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
@@ -63,6 +63,7 @@ namespace ShoeShopWeb.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Details(int productID)
         {

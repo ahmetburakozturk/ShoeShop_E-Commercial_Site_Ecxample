@@ -9,6 +9,6 @@ namespace ShoeShop.DataAccess.Abstract
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-
+        bool IsExists(int id);
     }
 }

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using ShoeShop.Businness.Abstract;
 using ShoeShop.Businness.Concrete;
@@ -42,9 +43,17 @@ namespace ShoeShop
             services.AddScoped<IGenderService,GenderManager>();
             services.AddScoped<IStockRepository, EfStockRepository>();
             services.AddScoped<IStockService, StockManager>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserRepository,EfUserRepository>();
             var connectionString = Configuration.GetConnectionString("db");
             services.AddDbContext<ShoeShopDbContext>(opt => opt.UseNpgsql(connectionString));
             services.AddAutoMapper(typeof(MapProfile));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opt =>
+                {
+                    opt.LoginPath = "/Users/Login";
+                    opt.AccessDeniedPath = "/Users/AccessDenied";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +74,7 @@ namespace ShoeShop
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

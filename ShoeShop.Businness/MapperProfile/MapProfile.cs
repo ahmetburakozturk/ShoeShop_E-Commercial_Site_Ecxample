@@ -7,6 +7,7 @@ using AutoMapper;
 using ShoeShop.Dtos;
 
 using ShoeShop.Entities;
+using ShoeShop.Entities.Concrete;
 
 namespace ShoeShop.Businness.MapperProfile
 {
@@ -18,6 +19,8 @@ namespace ShoeShop.Businness.MapperProfile
             CreateMap<Category,CategoryDto>();
             CreateMap<ProductDto,Product>();
             CreateMap<Product,ProductDto>();
+            CreateMap<User,UserDto>();
+            CreateMap<UserDto,User>();
         }
     }
 }

@@ -11,6 +11,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="/swiper.css" type="text/css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
 
@@ -25,10 +26,35 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <div style="width: 55em;"></div>
+                    <div style="width: 45em;"></div>
                     <div class="d-flex">
                         <button class="btn btn-outline-dark ms-3"><i class="fa-solid fa-basket-shopping mr-2"></i>Sepetim</button>
-                        <button class="btn btn-outline-dark ms-3" style="border-radius: 50px;"><i class="fa-solid fa-user"></i></button>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="dropdown ml-3">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i>
+                                    @User.Identity.Name
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" asp-controller="Users" asp-action="Details" asp-route-username="@User.Identity.Name">Bilgilerim</a></li>
+                                    <li><a asp-controller="Users" asp-action="Logout" class="dropdown-item">Çıkış Yap</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="dropdown ml-3">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a asp-controller="Users" asp-action="Login" class="dropdown-item">Giriş Yap</a></li>
+                                    <li><a asp-controller="Users" asp-action="Register" class="dropdown-item" >Kayıt Ol</a></li>
+                                </ul>
+                            </div>
+                        }
+                        
                     </div>
                 </div>
             </div>
@@ -55,11 +81,12 @@
         </div>
     </footer>
         <script src="https://kit.fontawesome.com/3417e16898.js" crossorigin="anonymous"></script>
-        <script src="sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
         <script>
             var swiper = new Swiper(".mySwiper", {
                 spaceBetween: 30,

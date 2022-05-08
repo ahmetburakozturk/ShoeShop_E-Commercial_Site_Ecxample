@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoeShop.Businness.Abstract;
 using ShoeShop.Dtos;
@@ -6,6 +7,7 @@ using ShoeShop.Entities;
 
 namespace ShoeShopWeb.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

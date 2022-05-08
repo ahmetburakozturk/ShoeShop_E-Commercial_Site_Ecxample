@@ -9,5 +9,6 @@ namespace ShoeShop.DataAccess.Abstract
 {
     public interface IBrandRepository : IRepository<Brand>
     {
+        bool IsExists(int id);
     }
 }

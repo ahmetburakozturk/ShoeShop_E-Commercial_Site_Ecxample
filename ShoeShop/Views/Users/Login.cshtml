@@ -1,0 +1,38 @@
+﻿@model UserDto
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container-sm" style="width: 20%;">
+    
+    <div>
+        <h1 style="color: orangered;">Kullanıcı Girişi</h1>
+        <hr />
+    </div>
+    <div>
+        <div asp-validation-summary="All" class="text-white bg-danger "></div>    
+        <form asp-action="Login" asp-route-returnURL="@ViewBag.ReturnURL">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label font-weight-bold"></label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label font-weight-bold"></label>
+                <input asp-for="Password" class="form-control"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <input type="submit" value="Giriş Yap" class="btn btn-success"/>
+            </div>
+        </form>
+    </div>
+    
+       
+</div>
+
+
+

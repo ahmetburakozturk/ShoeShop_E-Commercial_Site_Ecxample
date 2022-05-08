@@ -22,6 +22,7 @@ namespace ShoeShop.DataAccess.Abstract
         public DbSet<Color> Colors { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Stock> Stocks { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

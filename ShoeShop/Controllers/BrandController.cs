@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoeShop.Businness.Abstract;
 using ShoeShop.Entities;
 
 namespace ShoeShopWeb.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class BrandController : Controller
     {
         private readonly IBrandService _brandService;
