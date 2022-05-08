@@ -12,5 +12,6 @@ namespace ShoeShop.DataAccess.Abstract
     public interface IStockRepository : IRepository<Stock>
     {
         ICollection<StockDto> GetSizes(int id);
+
     }
 }

@@ -15,5 +15,6 @@ namespace ShoeShop.Businness.Abstract
         void AddUser(UserDto user); 
         UserDto ValidateUser(string email, string password);    
         UserDto GetUserByName(string name);
+        void UpdateUser(UserDto userDto);
     }
 }

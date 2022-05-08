@@ -18,15 +18,17 @@ namespace ShoeShop.Dtos
         
         [Display(Name = "E-posta")]
         [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "E-Mail boş bırakılamaz!")]
         public string Email { get; set; }
 
         
         [Display(Name = "Şifre")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Şifre boş bırakılamaz!")]
         public string Password { get; set; }
 
         [Display(Name = "Adres")]
-        
+
         public string Address { get; set; }
 
         
@@ -36,5 +38,7 @@ namespace ShoeShop.Dtos
 
         
         public string Role { get; set; }    
+
+        public string oldPassword { get; set; }
     }
 }

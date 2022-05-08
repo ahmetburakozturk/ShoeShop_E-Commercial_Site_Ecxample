@@ -36,6 +36,7 @@ namespace ShoeShop.Businness.Concrete
         {
             var newUser = _mapper.Map<User>(userDto);
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(newUser.Password);
+            newUser.Role = "client";
             _userRepository.Add(newUser);
         }
 
@@ -56,6 +57,13 @@ namespace ShoeShop.Businness.Concrete
         {
             var user = _userRepository.GetUserByName(name);
             return _mapper.Map<UserDto>(user);
+        }
+
+        public void UpdateUser(UserDto userDto)
+        {
+            var user = _mapper.Map<User>(userDto);
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            _userRepository.Update(user);
         }
     }
 }

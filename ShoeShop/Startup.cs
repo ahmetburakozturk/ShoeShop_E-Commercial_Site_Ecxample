@@ -54,6 +54,7 @@ namespace ShoeShop
                     opt.LoginPath = "/Users/Login";
                     opt.AccessDeniedPath = "/Users/AccessDenied";
                 });
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,16 +75,104 @@ namespace ShoeShop
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Stok/Ekle",
+                    defaults: new { controller = "Stock", action = "Create" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Markalar/Sil/{id}",
+                    defaults: new { controller = "Brand", action = "Delete", id = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Markalar/Ekle",
+                    defaults: new { controller = "Brand", action = "Create" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Markalar/Düzenle/{id}",
+                    defaults: new { controller = "Brand", action = "Edit", id = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Markalar/",
+                    defaults: new { controller = "Brand", action = "Show" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Kategoriler/Sil/{id}",
+                    defaults: new { controller = "Category", action = "Delete" , id = 1});
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Kategoriler/Ekle",
+                    defaults: new { controller = "Category", action = "Create" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Kategoriler/Düzenle/{id}",
+                    defaults: new { controller = "Category", action = "Edit", id = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Kategoriler/",
+                    defaults: new { controller = "Category", action = "Show" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Ürünler/Ekle",
+                    defaults: new { controller = "Products", action = "Create" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Ürünler/Düzenle/{id}",
+                    defaults: new { controller = "Products", action = "Edit", id = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Ürünler/Sayfa/{page}",
+                    defaults: new { controller = "Products", action = "Show", page = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Anasayfa/{catName}/Sayfa{page}",
+                    defaults: new { controller = "Home", action = "Index", page = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Sepetim",
+                    defaults: new { controller = "Cart", action = "Basket" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Anasayfa/Sayfa{page}",
+                    defaults: new { controller = "Home", action = "Index", page = 1 });
 
                 endpoints.MapControllerRoute(
                     name: "",
                     pattern: "Urunler/Sayfa{page}",
                     defaults: new { controller = "Products", action = "Show", page = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Urunler/Sayfa{page}",
+                    defaults: new { controller = "Cart", action = "Basket" });
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "{username}/Bilgiler",
+                    defaults: new { controller = "Users", action = "Details" });
 
                 endpoints.MapControllerRoute(
                     name: "",
@@ -101,14 +190,12 @@ namespace ShoeShop
                     defaults: new { controller = "Home", action = "Index", page = 1 });
 
 
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "",
-                    pattern: "Sayfa{page}",
-                    defaults: new { controller = "Home", action = "Index", page = 1 });
+                
 
             });
         }

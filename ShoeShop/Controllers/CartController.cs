@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShoeShop.Businness.Abstract;
+using ShoeShopWeb.Extensions;
 using ShoeShopWeb.Models;
 
 namespace ShoeShopWeb.Controllers
@@ -16,9 +17,10 @@ namespace ShoeShopWeb.Controllers
         {
             _productService = productService;
         }
-        public IActionResult Index()
+        public IActionResult Basket()
         {
-            return View();
+            var cartCollection = getCollectionFromSession();
+            return View(cartCollection);
         }
 
         public IActionResult Add(int id)
@@ -37,24 +39,22 @@ namespace ShoeShopWeb.Controllers
 
         private void saveToSession(CartCollection cartCollection)
         {
-            throw new System.NotImplementedException();
+            HttpContext.Session.SetJson("sepetim",cartCollection);
         }
 
         private CartCollection getCollectionFromSession()
         {
             CartCollection cartCollection = null;
-            if (HttpContext.Session.GetString("sepetim") == null)
-            {
-                cartCollection = new CartCollection();
-            }
-            else
-            {
-                var cartCollectionJson = HttpContext.Session.GetString("sepetim");
-                JsonConvert.DeserializeObject<CartCollection>(cartCollectionJson); 
-            }
-
-
+            cartCollection = HttpContext.Session.GetJson<CartCollection>("sepetim") ?? new CartCollection();
             return cartCollection;
+        }
+
+        public IActionResult Delete(int id)
+        {
+            CartCollection cartCollection = getCollectionFromSession();
+            cartCollection.Delete(id);
+            saveToSession(cartCollection);
+            return Json("Ürün Sepetten Çıkartıldı");
         }
     }
 }

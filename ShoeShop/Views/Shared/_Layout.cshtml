@@ -21,14 +21,14 @@
     <div id="head">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white" id="navbar">
             <div class="container">
-                <a class="navbar-brand" href="/Home/Index"><img src="/images/shoe3.png" alt="Logo" class="img-fluid"/></a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index" asp-route-page="1"><img src="/images/shoe3.png" alt="Logo" class="img-fluid"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <div style="width: 45em;"></div>
+                    <div style="width: 47em;"></div>
                     <div class="d-flex">
-                        <button class="btn btn-outline-dark ms-3"><i class="fa-solid fa-basket-shopping mr-2"></i>Sepetim</button>
+                        <a class="btn btn-outline-dark ms-3" asp-controller="Cart" asp-action="Basket"><i class="fa-solid fa-basket-shopping mr-2"></i>Sepetim</a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="dropdown ml-3">
@@ -36,9 +36,9 @@
                                     <i class="fa-solid fa-user"></i>
                                     @User.Identity.Name
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" asp-controller="Users" asp-action="Details" asp-route-username="@User.Identity.Name">Bilgilerim</a></li>
-                                    <li><a asp-controller="Users" asp-action="Logout" class="dropdown-item">Çıkış Yap</a></li>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item btn btn-outline-dark" asp-controller="Users" asp-action="Details" asp-route-username="@User.Identity.Name">Bilgilerim</a></li>
+                                    <li><a asp-controller="Users" asp-action="Logout" class="dropdown-item btn btn-danger">Çıkış Yap</a></li>
                                 </ul>
                             </div>
                         }
@@ -48,9 +48,9 @@
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-user"></i>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a asp-controller="Users" asp-action="Login" class="dropdown-item">Giriş Yap</a></li>
-                                    <li><a asp-controller="Users" asp-action="Register" class="dropdown-item" >Kayıt Ol</a></li>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+                                    <li><a asp-controller="Users" asp-action="Login" class="dropdown-item btn btn-outline-dark">Giriş Yap</a></li>
+                                    <li><a asp-controller="Users" asp-action="Register" class="dropdown-item btn btn-outline-dark" >Kayıt Ol</a></li>
                                 </ul>
                             </div>
                         }
@@ -105,6 +105,8 @@
                 },
             });
         </script>
+
+
         @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

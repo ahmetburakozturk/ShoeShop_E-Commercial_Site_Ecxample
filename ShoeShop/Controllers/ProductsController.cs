@@ -176,7 +176,7 @@ namespace ShoeShopWeb.Controllers
             var selectedItems = new List<SelectListItem>();
             _stockService.GetSizes(id).ToList().ForEach(stk => selectedItems.Add(new
                 SelectListItem
-                { Text = stk.SizeName, Value = stk.StockID.ToString() }
+                { Text = stk.SizeName, Value = stk.SizeName }
             ));
             return selectedItems;
         }

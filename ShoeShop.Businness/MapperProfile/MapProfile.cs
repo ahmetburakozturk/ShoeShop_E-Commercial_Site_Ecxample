@@ -21,6 +21,8 @@ namespace ShoeShop.Businness.MapperProfile
             CreateMap<Product,ProductDto>();
             CreateMap<User,UserDto>();
             CreateMap<UserDto,User>();
+            CreateMap<Stock,StockDto>();
+            CreateMap<StockDto,Stock>();
         }
     }
 }

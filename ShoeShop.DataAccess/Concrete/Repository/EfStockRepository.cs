@@ -30,7 +30,9 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public int Add(Stock entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Stocks.Add(entity);
+            _dbContext.SaveChanges();
+            return entity.ID;
         }
 
         public int Update(Stock entity)
@@ -69,5 +71,6 @@ namespace ShoeShop.DataAccess.Concrete.Repository
             }
             return sizeList;
         }
+
     }
 }

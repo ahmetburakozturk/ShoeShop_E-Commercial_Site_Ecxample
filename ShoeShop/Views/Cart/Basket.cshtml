@@ -1,0 +1,66 @@
+﻿@model ShoeShopWeb.Models.CartCollection
+
+
+<div class="container-fluid">
+    <div class="row">
+        <h1 style="color: orangered;">Sepetim</h1>
+        <hr/>
+        @if (Model.CartItems.Count == 0)
+        {
+            <div class="alert alert-warning">Sepetinizde Ürün Bulunmuyor!</div>
+        }
+        else
+        {
+            <div class="col-9">
+                <table class="table ">
+                    <tbody>
+                    @foreach (var cart in Model.CartItems)
+                    {
+                        <tr class=" text-dark">
+                            <td style="text-align: center; vertical-align: middle;"><img src="@cart.Product.ImageUrl" style="width: 90px; height: 120px;"/></td>
+                            <td style="text-align: center; vertical-align: middle;">@cart.Product.Name</td>
+                            <td style="text-align: center; vertical-align: middle;"> Adet : @cart.Quantity</td>
+                            <td style="text-align: center; vertical-align: middle; color: orangered;">@(cart.Product.Price * @cart.Quantity) TL</td>
+                            <td style="text-align: center; vertical-align: middle;"><a class="sil" data-id="@cart.Product.ID" asp-controller="Cart" asp-action="Basket"><i style="color: red;" class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                    }   
+                    </tbody>
+                </table>
+            </div>
+       
+            <div class="col-3">
+                <div style="background-color: white; padding: 15px;">
+                    <h5 style="font-weight: bold; color: orangered;">Sepet Özeti</h5>
+                    <hr/>
+                    <p >Sepette <span style="color: orangered; font-weight: bold;">@Model.CartItems.Count</span> Ürün Var</p>
+                    <p >Kargo Ücreti : <span class="text-success font-weight-bold">Ücretsiz</span></p>
+                    <p >Genel Toplam : <span class="font-weight-bold" style="color: orangered;"> @Model.GetTotalPrice() TL</span></p>
+                    <a class="btn btn-success text-light" style="padding: 10px 0px; display: block; font-weight: bold;">Ödemeye Geç</a>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.sil').on('click',
+                function() {
+                    let id = $(this).data('id');
+                    $.ajax({
+                        url: '/Cart/Delete/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            alertify.warning(data);
+                        }
+                    });
+                });
+        });
+    </script>
+}
+

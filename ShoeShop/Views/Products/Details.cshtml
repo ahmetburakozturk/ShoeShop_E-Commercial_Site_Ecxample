@@ -25,7 +25,7 @@
             <p style="color: black; font-weight: bold">Renk :<span style="color: gray; font-weight: normal"> @Model.ColorName</span></p>
             <br/>
             <p><i class="fa-solid fa-ruler-horizontal"></i> Beden Tablosu</p>
-            <select class="form-group px-2 py-2 bg-light text-dark text-center font-weight-bold" style="border-radius: 5px" asp-items="ViewBag.Sizes"><option value="" class="text-dark" disabled selected>Numara Seçiniz</option></select>
+            <select asp-for="SizeNumber" class="form-group px-2 py-2 bg-light text-dark text-center font-weight-bold" style="border-radius: 5px" asp-items="ViewBag.Sizes"><option value="" class="text-dark" disabled selected>Numara Seçiniz</option></select>
             <p class="mt-3"><i class="fa-solid fa-truck"></i> Tahmini Teslim Tarihi : <span class="font-weight-bold">@(DateTime.Today.AddDays(3).Day) @ViewBag.Month1 - @(DateTime.Today.AddDays(7).Day) @ViewBag.Month2</span></p>
             <a class="btn font-weight-bold sepet" data-id="@Model.ID" style="background-color: green; color: white; padding: 15px 55px;">Sepete Ekle</a>
             <br/>

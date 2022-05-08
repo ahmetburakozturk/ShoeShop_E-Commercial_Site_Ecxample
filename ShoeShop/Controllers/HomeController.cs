@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿    using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShoeShop.Models;
 using System;
@@ -26,12 +26,8 @@ namespace ShoeShop.Controllers
         {
             var products = catName == null ? _productService.GetAllActiveProductsWithBrand() : catName=="-1" ? _productService.GetAllActiveProductsWithBrand() :
                  _productService.GetAllActiveProductsWithBrand().Where(p => p.CategoryName == catName).ToList();
-
             products = genderID == null ? products : genderID == -1 ? products : products.Where(p => p.GenderID == genderID).ToList();
-
             products = brandID == null ? products : brandID == -1 ? products : products.Where(p => p.BrandID == brandID).ToList();
-
-
             products = colorID == null ? products : colorID == -1? products : products.Where(p => p.ColorID == colorID).ToList();
 
             var productsPerPage = 6;

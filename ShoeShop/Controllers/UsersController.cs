@@ -29,7 +29,7 @@ namespace ShoeShopWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserDto userDto, string returnURL)
         {
-            returnURL = returnURL+"/1";
+            returnURL = returnURL;
             if (ModelState.IsValid)
             {
                 var user = _userManager.ValidateUser(userDto.Email,userDto.Password);
@@ -65,12 +65,47 @@ namespace ShoeShopWeb.Controllers
         public IActionResult Details(string username)
         {
             var userDto = _userManager.GetUserByName(username);
+            ViewBag.State = null;
             return View(userDto);
+        }
+
+        [HttpPost]
+        public IActionResult Details(UserDto userDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.GetUser(userDto.Email);
+                if (BCrypt.Net.BCrypt.Verify(userDto.oldPassword, user.Password))
+                {
+                    userDto.Role = user.Role;
+                    _userManager.UpdateUser(userDto);
+                    ViewBag.State = true;
+                    return View();
+                }
+            }
+            ViewBag.State = false;
+            return View();
         }
 
         public IActionResult AccessDenied(string returnUrl)
         {
             ViewBag.ReturnUrl=returnUrl;
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(UserDto userDto)
+        {
+            if (ModelState.IsValid)
+            {
+                _userManager.AddUser(userDto);
+                return RedirectToAction(nameof(Login));
+            }
             return View();
         }
     }

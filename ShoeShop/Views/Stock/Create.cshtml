@@ -1,0 +1,51 @@
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model StockDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h4 style="color: orangered;">Stok Ekle</h4>
+<hr />
+<div class="container-sm d-flex justify-content-center">
+    
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                @if (ViewBag.State != null)
+                {
+                    if (ViewBag.State == true)
+                    {
+                        <div class="alert alert-success" style="width: 400px;">Stok başarıyla eklendi.</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success" style="width: 400px;">Stok ekleme başarısız!.</div>
+                    }
+                }
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" style="width: 400px;">
+                    <label asp-for="ProductID" class="control-label font-weight-bold"></label>
+                    <select class="form-control" asp-for="ProductID" asp-items="ViewBag.Products"></select>
+                    <span asp-validation-for="ProductID" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 400px;">
+                    <label asp-for="SizeName" class="control-label font-weight-bold"></label>
+                    <input asp-for="SizeName" class="form-control"/>
+                    <span asp-validation-for="SizeName" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 400px;">
+                    <label asp-for="StockNumber" class="control-label font-weight-bold"></label>
+                    <input asp-for="StockNumber" class="form-control"/>
+                    <span asp-validation-for="StockNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Ekle" class="btn btn-success" style="width: 400px; font-weight: bold;"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

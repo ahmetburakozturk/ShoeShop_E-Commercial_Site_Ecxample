@@ -11,5 +11,7 @@ namespace ShoeShop.Businness.Abstract
     public interface IStockService
     {
         ICollection<StockDto> GetSizes(int productId);
+
+        void AddStock(StockDto stock);
     }
 }

@@ -67,6 +67,8 @@ namespace ShoeShop.Dtos
 
         [Display(Name = "Ürün listelensin mi *")]
         public bool IsActive { get; set; }
+
+        public string SizeNumber { get; set; }
         public string BrandName { get; set; }
         public string CategoryName { get; set; }
         public string GenderName { get; set; }
