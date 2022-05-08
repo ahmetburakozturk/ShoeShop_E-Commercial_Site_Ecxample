@@ -24,6 +24,7 @@ TECHNOLOGIES & FRAMEWORKS Included :
   - ALERTIFY JS
   - FONT AWESOME
   - SWİPER
+  - BCrypt
 
 SAMPLE ADMINISTRATOR USER ACCOUNT :
   - admin@admin.com
