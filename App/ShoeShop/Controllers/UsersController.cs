@@ -29,7 +29,10 @@ namespace ShoeShopWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserDto userDto, string returnURL)
         {
-            returnURL = returnURL;
+            if (returnURL==null)
+            {
+                returnURL = "/";
+            }
             if (ModelState.IsValid)
             {
                 var user = _userManager.ValidateUser(userDto.Email,userDto.Password);
