@@ -1,6 +1,6 @@
 DEMO => https://youtu.be/0fwZ8CMhLf0
 
-TURKCELL GELECEGI YAZANLAR FINAL HOMEWORK - 1
+TURKCELL GELECEGI YAZANLAR FINAL HOMEWORK
 
 This project is a E-Trade Web Site on Shoes.
 (In accordance with the solid principles as possible.)
@@ -27,6 +27,9 @@ TECHNOLOGIES & FRAMEWORKS Included :
   - FONT AWESOME
   - SWİPER
   - BCrypt
+  - API
+  - JWT
+  - MEMORY CACHE
 
 SAMPLE ADMINISTRATOR USER ACCOUNT :
   - admin@admin.com
