@@ -8,4 +8,8 @@
     <ProjectReference Include="..\ShoeShop.Entities\ShoeShop.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+  </ItemGroup>
+
 </Project>

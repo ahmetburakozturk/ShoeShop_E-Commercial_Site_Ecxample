@@ -18,9 +18,12 @@ namespace ShoeShopWeb.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IGenderService _genderService;
         private readonly IStockService _stockService;
+        private readonly IFavoriteService _favoriteManager;
+        private readonly IUserService _userManager;
 
         public ProductsController(IProductService productService,ICategoryService categoryService,
-            IBrandService brandService, IColorService colorService, IGenderService genderService, IStockService stockService)
+            IBrandService brandService, IColorService colorService, IGenderService genderService,
+            IStockService stockService, IFavoriteService favoriteService, IUserService userService)
         {
             _productService = productService;
             _categoryService = categoryService;
@@ -28,6 +31,8 @@ namespace ShoeShopWeb.Controllers
             _colorService = colorService;
             _genderService = genderService;
             _stockService = stockService;
+            _favoriteManager = favoriteService;
+            _userManager = userService;
         }
         public IActionResult Show(int page)
         {
@@ -71,6 +76,8 @@ namespace ShoeShopWeb.Controllers
             ViewBag.Sizes = GetSizes(productID);
             ViewBag.Month1 = GetMonthToDelivery(3);
             ViewBag.Month2 = GetMonthToDelivery(7);
+            var userID = User.Identity.Name != null ? _userManager.GetUserByName(User.Identity.Name).ID : 0;
+            ViewBag.Favorites = _favoriteManager.GetFavoritesIdByUser(userID);
             return View(productWithDetails);
         }
 

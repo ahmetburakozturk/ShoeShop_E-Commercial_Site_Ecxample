@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using ShoeShop.Businness.Abstract;
 using ShoeShop.DataAccess.Abstract;
+using ShoeShop.Dtos.Concrete;
 using ShoeShop.Entities;
 
 namespace ShoeShop.Businness.Concrete
@@ -12,10 +14,12 @@ namespace ShoeShop.Businness.Concrete
     public class BrandManager : IBrandService
     {
         private readonly IBrandRepository _brandRepository;
+        private readonly IMapper _mapper;
 
-        public BrandManager(IBrandRepository brandRepository)
+        public BrandManager(IBrandRepository brandRepository, IMapper mapper)
         {
             _brandRepository = brandRepository;
+            _mapper = mapper;
         }
         public ICollection<Brand> GetAllBrands()
         {
@@ -32,14 +36,15 @@ namespace ShoeShop.Businness.Concrete
             return _brandRepository.IsExists(id);
         }
 
-        public void UpdateBrand(Brand brand)
+        public void UpdateBrand(BrandDto brandDto)
         {
+            var brand = _mapper.Map<Brand>(brandDto);
             _brandRepository.Update(brand);
         }
 
-        public void AddBrand(Brand brand)
+        public int AddBrand(Brand brand)
         {
-            _brandRepository.Add(brand);
+            return _brandRepository.Add(brand);
         }
 
         public void DeleteBrand(int brandId)

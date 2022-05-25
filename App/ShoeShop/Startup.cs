@@ -45,6 +45,8 @@ namespace ShoeShop
             services.AddScoped<IStockService, StockManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserRepository,EfUserRepository>();
+            services.AddScoped<IFavoriteRepository, EfFavoriteRepository>();
+            services.AddScoped<IFavoriteService, FavoriteManager>();
             var connectionString = Configuration.GetConnectionString("db");
             services.AddDbContext<ShoeShopDbContext>(opt => opt.UseNpgsql(connectionString));
             services.AddAutoMapper(typeof(MapProfile));
@@ -55,6 +57,9 @@ namespace ShoeShop
                     opt.AccessDeniedPath = "/Users/AccessDenied";
                 });
             services.AddSession();
+            services    
+                .AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,7 +87,11 @@ namespace ShoeShop
 
             app.UseEndpoints(endpoints =>
             {
-                
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Favorilerim",
+                    defaults: new { controller = "Favorite", action = "Show" });
 
                 endpoints.MapControllerRoute(
                     name: "",
@@ -101,7 +110,7 @@ namespace ShoeShop
 
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "Markalar/Düzenle/{id}",
+                    pattern: "Markalar/Dï¿½zenle/{id}",
                     defaults: new { controller = "Brand", action = "Edit", id = 1 });
 
                 endpoints.MapControllerRoute(
@@ -121,7 +130,7 @@ namespace ShoeShop
 
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "Kategoriler/Düzenle/{id}",
+                    pattern: "Kategoriler/Dï¿½zenle/{id}",
                     defaults: new { controller = "Category", action = "Edit", id = 1 });
 
                 endpoints.MapControllerRoute(
@@ -131,17 +140,17 @@ namespace ShoeShop
 
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "Ürünler/Ekle",
+                    pattern: "ï¿½rï¿½nler/Ekle",
                     defaults: new { controller = "Products", action = "Create" });
 
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "Ürünler/Düzenle/{id}",
+                    pattern: "ï¿½rï¿½nler/Dï¿½zenle/{id}",
                     defaults: new { controller = "Products", action = "Edit", id = 1 });
 
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "Ürünler/Sayfa/{page}",
+                    pattern: "ï¿½rï¿½nler/Sayfa/{page}",
                     defaults: new { controller = "Products", action = "Show", page = 1 });
 
                 endpoints.MapControllerRoute(

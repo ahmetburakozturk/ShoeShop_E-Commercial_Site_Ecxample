@@ -66,6 +66,31 @@ namespace ShoeShop.DataAccess.Migrations
                     b.ToTable("Colors");
                 });
 
+            modelBuilder.Entity("ShoeShop.Entities.Concrete.Favorite", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("IsFavorite")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Favorites");
+                });
+
             modelBuilder.Entity("ShoeShop.Entities.Concrete.Gender", b =>
                 {
                     b.Property<int>("ID")
@@ -124,9 +149,6 @@ namespace ShoeShop.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProfilePicture")
                         .HasColumnType("text");
 
                     b.Property<string>("Role")
@@ -194,9 +216,6 @@ namespace ShoeShop.DataAccess.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
-                    b.Property<double>("Size")
-                        .HasColumnType("double precision");
-
                     b.HasKey("ID");
 
                     b.HasIndex("BrandID");
@@ -208,6 +227,25 @@ namespace ShoeShop.DataAccess.Migrations
                     b.HasIndex("GenderID");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ShoeShop.Entities.Concrete.Favorite", b =>
+                {
+                    b.HasOne("ShoeShop.Entities.Product", "Product")
+                        .WithMany("Favorites")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ShoeShop.Entities.Concrete.User", "User")
+                        .WithMany("Favorites")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ShoeShop.Entities.Concrete.Stock", b =>
@@ -276,8 +314,15 @@ namespace ShoeShop.DataAccess.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("ShoeShop.Entities.Concrete.User", b =>
+                {
+                    b.Navigation("Favorites");
+                });
+
             modelBuilder.Entity("ShoeShop.Entities.Product", b =>
                 {
+                    b.Navigation("Favorites");
+
                     b.Navigation("Stocks");
                 });
 #pragma warning restore 612, 618

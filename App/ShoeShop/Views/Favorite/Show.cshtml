@@ -1,0 +1,42 @@
+@model List<ProductDto>
+
+<div class="container-sm text-center" style="width: 50%;">
+    <h2 style="color: orangered; text-decoration: underline">Favorilerim</h2>
+    <br />
+    <div class="col-12" style=" height: 600px; overflow-y: scroll;">
+        <table class="table ">
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr class=" text-dark">
+                        <td style="text-align: center; vertical-align: middle;"><a class="remove" data-id="@product.ID" asp-controller="Favorite" asp-action="Show"><i style="color: red;" class="fa-solid fa-heart"></i></a></td>
+                        <td style="text-align: center; vertical-align: middle;"><img src="@product.ImageUrl" style="width: 120px; height: 170px;" /></td>
+                        <td style="text-align: center; vertical-align: middle;">@product.Name</td>
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-primary" asp-controller="Products" asp-action="Details" asp-route-productID="@product.ID">Detaylar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.remove').on('click',
+                function() {
+                    let id = $(this).data('id');
+                    $.ajax({
+                        url: '/Favorite/RemoveFavorite/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            alertify.warning(data);
+                        }
+                    });
+                });
+        });
+    </script>
+}

@@ -44,10 +44,10 @@ namespace ShoeShop.Businness.Concrete
             return _categoryRepository.IsExists(id);
         }
 
-        public void AddCategory(CategoryDto categoryDto)
+        public int AddCategory(CategoryDto categoryDto)
         {
             var category = _mapper.Map<Category>(categoryDto);
-            _categoryRepository.Add(category);
+            return _categoryRepository.Add(category);
         }
 
         public void DeleteCategoryById(int categoryDtoId)

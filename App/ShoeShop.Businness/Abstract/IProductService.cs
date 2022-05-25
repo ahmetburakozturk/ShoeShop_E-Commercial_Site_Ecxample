@@ -17,5 +17,7 @@ namespace ShoeShop.Businness.Abstract
         ProductDto GetProductById(int id);
         int UpdateProduct(ProductDto productDto);
         bool isExist(int id);
+
+        void SoftDelete(ProductDto productDto);
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using ShoeShop.Dtos;
-
+using ShoeShop.Dtos.Concrete;
 using ShoeShop.Entities;
 using ShoeShop.Entities.Concrete;
 
@@ -23,6 +23,10 @@ namespace ShoeShop.Businness.MapperProfile
             CreateMap<UserDto,User>();
             CreateMap<Stock,StockDto>();
             CreateMap<StockDto,Stock>();
+            CreateMap<FavoriteDto,Favorite>();
+            CreateMap<Favorite,FavoriteDto>();
+            CreateMap<Brand, BrandDto>();
+            CreateMap<BrandDto, Brand>();
         }
     }
 }

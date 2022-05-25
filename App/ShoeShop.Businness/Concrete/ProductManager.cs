@@ -62,5 +62,10 @@ namespace ShoeShop.Businness.Concrete
             return _productRepository.IsExists(id);
         }
 
+        public void SoftDelete(ProductDto productDto)
+        {
+            var product = _mapper.Map<Product>(productDto);
+            _productRepository.SoftDelete(product);
+        }
     }
 }

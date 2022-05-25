@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoeShop.Businness.Abstract;
+using ShoeShop.Dtos.Concrete;
 using ShoeShop.Entities;
 
 namespace ShoeShopWeb.Controllers
@@ -34,11 +35,11 @@ namespace ShoeShopWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Brand brand)
+        public IActionResult Edit(BrandDto brandDto)
         {
             if (ModelState.IsValid)
             {
-                _brandService.UpdateBrand(brand);
+                _brandService.UpdateBrand(brandDto);
                 return RedirectToAction(nameof(Show), nameof(Brand));
             }
 

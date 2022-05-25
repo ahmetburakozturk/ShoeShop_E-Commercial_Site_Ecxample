@@ -14,7 +14,7 @@ namespace ShoeShop.Businness.Abstract
         CategoryDto GetCategoryById(int id);
         void UpdateCategory(CategoryDto categoryDto);
         bool isExist(int id);
-        void AddCategory(CategoryDto categoryDto);
+        int AddCategory(CategoryDto categoryDto);
         void DeleteCategoryById(int categoryDtoId);
     }
 }

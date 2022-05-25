@@ -11,15 +11,15 @@
         }
         else
         {
-            <div class="col-9">
+            <div class="col-8" style="height: 600px; overflow-y: scroll;">
                 <table class="table ">
                     <tbody>
                     @foreach (var cart in Model.CartItems)
                     {
                         <tr class=" text-dark">
-                            <td style="text-align: center; vertical-align: middle;"><img src="@cart.Product.ImageUrl" style="width: 90px; height: 120px;"/></td>
-                            <td style="text-align: center; vertical-align: middle;">@cart.Product.Name</td>
-                            <td style="text-align: center; vertical-align: middle;"> Adet : @cart.Quantity</td>
+                            <td style="text-align: center; vertical-align: middle;"><img src="@cart.Product.ImageUrl" style="width: 120px; height: 150px;"/></td>
+                            <td style="text-align: center; vertical-align: middle;"><a style="text-decoration: underline;" asp-controller="Products" asp-action="Details" asp-route-productID="@cart.Product.ID">@cart.Product.Name</a> </td>
+                            <td style="text-align: center; vertical-align: middle;"> Adet :<span class="font-weight-bold">@cart.Quantity</span></td>
                             <td style="text-align: center; vertical-align: middle; color: orangered;">@(cart.Product.Price * @cart.Quantity) TL</td>
                             <td style="text-align: center; vertical-align: middle;"><a class="sil" data-id="@cart.Product.ID" asp-controller="Cart" asp-action="Basket"><i style="color: red;" class="fa-solid fa-trash"></i></a></td>
                         </tr>

@@ -14,5 +14,6 @@ namespace ShoeShop.DataAccess.Abstract
         IQueryable<ProductDto> GetProductByIdWithDetails(int id);
         IQueryable<ProductDto> GetProductById(int id);
         ICollection<ProductDto> GetAllActiveProductsWithBrand();
+        void SoftDelete(Product product);
     }
 }

@@ -33,8 +33,8 @@
                 @await Component.InvokeAsync("ColorFilter")
             </div>
         </div>
-        <div class="col-9" id="prdCard">
-            <div class="row" id="myUL">
+        <div class="col-9">
+            <div class="row">
                 @foreach (var item in Model)
                 {
                     <partial name="_ProductCard" model="item"/>
@@ -54,3 +54,36 @@
     
 </div>
 
+@section Scripts
+{
+    <script>
+    $(document).ready(function() {
+                $('.favorite').on('click',
+                    function() {
+                        let pdtID = $(this).data('id');
+                        $.ajax({
+                            url: '/Favorite/AddFavorite/' + pdtID,  
+                            type:'GET',
+                            dataType: 'json',
+                            success: function(data) {
+                                alertify.success(data);
+                            }
+                        });
+                    });
+            });
+        $(document).ready(function() {
+                    $('.unFav').on('click',
+                        function() {
+                            let pdtId = $(this).data('id');
+                            $.ajax({
+                                url: '/Favorite/RemoveFavorite/' + pdtId,  
+                                type:'GET',
+                                dataType: 'json',
+                                success: function(data) {
+                                     alertify.success(data);
+                                     }
+                            });
+                        });
+                });
+    </script>
+}

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ShoeShop.DataAccess.Abstract;
 using ShoeShop.Entities.Concrete;
 
@@ -47,7 +45,7 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public User GetUserByEmail(string email)
         {
-            return _dbContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            return _dbContext.Users.SingleOrDefault(u => u.Email == email);
         }
 
         public bool IsExists(string email)
@@ -57,7 +55,8 @@ namespace ShoeShop.DataAccess.Concrete.Repository
 
         public User GetUserByName(string name)
         {
-            return _dbContext.Users.Where(u => u.FullName == name).FirstOrDefault();
+            //return _dbContext.Users.Where(u => u.FullName == name).FirstOrDefault();
+            return _dbContext.Users.SingleOrDefault(u => u.FullName == name);
         }
     }
 }

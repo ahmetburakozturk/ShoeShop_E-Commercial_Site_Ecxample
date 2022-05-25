@@ -1,28 +1,29 @@
-﻿    using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShoeShop.Models;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+    using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using ShoeShop.Businness.Abstract;
-using ShoeShop.Entities;
+    using ShoeShop.Businness.Abstract;
 
-namespace ShoeShop.Controllers
+namespace ShoeShopWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
+        private readonly IFavoriteService _favoriteService;
+        private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger,IProductService productService, ICategoryService categoryService)
+        public HomeController(ILogger<HomeController> logger,IProductService productService,IFavoriteService favoriteService, IUserService userService)
         {
             _logger = logger;
             _productService = productService;
-        }
+            _favoriteService = favoriteService;
+            _userService = userService;
+        }   
 
-        public IActionResult Index(int page,string? catName,int? genderID, int? brandID, int? colorID)
+        public IActionResult Index(int page,string? catName,int? genderID, int? brandID, int? colorID, int? updateState)
         {
             var products = catName == null ? _productService.GetAllActiveProductsWithBrand() : catName=="-1" ? _productService.GetAllActiveProductsWithBrand() :
                  _productService.GetAllActiveProductsWithBrand().Where(p => p.CategoryName == catName).ToList();
@@ -34,9 +35,8 @@ namespace ShoeShop.Controllers
             var paginatedProducts = products.OrderBy(x => x.Name)
                 .Skip((page - 1) * productsPerPage)
                .Take(productsPerPage);
-            var latesProducts = products.OrderByDescending(x => x.ID)
-                .Take(productsPerPage);
-            ViewBag.Latest = latesProducts;
+            var userID = User.Identity.Name != null ? _userService.GetUserByName(User.Identity.Name).ID : 0;
+            ViewBag.Favorites = _favoriteService.GetFavoritesIdByUser(userID);
             ViewBag.CurrentPage = page;
             ViewBag.CurrentCategory = catName;
             ViewBag.CurrentGenderID = genderID;

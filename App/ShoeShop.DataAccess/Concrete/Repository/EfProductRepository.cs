@@ -73,7 +73,6 @@ namespace ShoeShop.DataAccess.Concrete.Repository
                         Price = pdt.Price,
                         Discount = pdt.Discount,
                         BrandName = brd.Name,
-                        Size = pdt.Size,
                         Material = pdt.Material,
                         CategoryName = cat.Name,
                         ColorName = clr.Name,
@@ -98,7 +97,6 @@ namespace ShoeShop.DataAccess.Concrete.Repository
                     CategoryID = pdt.CategoryID,
                     ColorID = pdt.ColorID,
                     GenderID = pdt.GenderID,
-                    Size = pdt.Size,
                     ImageUrl = pdt.ImageUrl,
                     ImageUrl2 = pdt.ImageUrl2,
                     ImageUrl3 = pdt.ImageUrl3,
@@ -153,6 +151,13 @@ namespace ShoeShop.DataAccess.Concrete.Repository
                 productDtoList.Add(poroductDto);
             }
             return productDtoList;
+        }
+
+        public void SoftDelete(Product product)
+        {
+            product.IsActive = false;
+            _dbContext.Products.Update(product);
+            _dbContext.SaveChanges();
         }
     }
 }

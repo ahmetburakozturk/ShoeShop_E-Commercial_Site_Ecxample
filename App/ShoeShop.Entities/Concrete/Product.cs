@@ -35,9 +35,6 @@ namespace ShoeShop.Entities
         [Display(Name = "Model Adı")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Boş Bırakılamaz!")]
-        [Display(Name = "Numara")]
-        public double Size { get; set; }
 
         [Required(ErrorMessage = "Boş Bırakılamaz!")]
         [Display(Name = "Görsel 1")]
@@ -75,5 +72,6 @@ namespace ShoeShop.Entities
         public Gender Gender { get; set; }
 
         public ICollection<Stock> Stocks { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
     }
 }

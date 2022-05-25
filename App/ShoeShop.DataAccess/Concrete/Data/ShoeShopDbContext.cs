@@ -23,6 +23,7 @@ namespace ShoeShop.DataAccess.Abstract
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +50,16 @@ namespace ShoeShop.DataAccess.Abstract
             modelBuilder.Entity<Stock>().HasOne(p => p.Product)
                 .WithMany(c => c.Stocks)
                 .HasForeignKey(p => p.ProductID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Favorite>().HasOne(p => p.Product)
+                .WithMany(c => c.Favorites)
+                .HasForeignKey(p => p.ProductID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Favorite>().HasOne(p => p.User)
+                .WithMany(c => c.Favorites)
+                .HasForeignKey(p => p.UserID)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }
